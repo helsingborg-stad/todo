@@ -1,13 +1,27 @@
 <?php
 
-namespace (#plugin_namespace#);
+namespace TODO;
 
 class App
 {
     public function __construct()
     {
+
+        //Init
+        add_action('plugins_loaded', array($this, 'init'));
+
+        //Front-end stuff
         add_action('admin_enqueue_scripts', array($this, 'enqueueStyles'));
         add_action('admin_enqueue_scripts', array($this, 'enqueueScripts'));
+    }
+
+    /**
+     * Init plugin classes
+     * @return void
+     */
+    public function init()
+    {
+        new \TODO\Ticket();
     }
 
     /**
@@ -16,7 +30,6 @@ class App
      */
     public function enqueueStyles()
     {
-
     }
 
     /**
@@ -25,6 +38,5 @@ class App
      */
     public function enqueueScripts()
     {
-
     }
 }

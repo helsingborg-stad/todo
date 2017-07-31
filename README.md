@@ -1,7 +1,3 @@
-# Wordpress Plugin Boilderplate
+# Todo
 
-Copy the contents of the folder and run the below command, from the plugin folder, in your terminal to run the setup guide.
-
-```
-sh setup.sh
-```
+A simple support ticket system based on ACF fields.

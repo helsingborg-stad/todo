@@ -1,21 +1,21 @@
 {
-  "name": "(#plugin_slug#)",
+  "name": "todo",
   "version": "1.0.0",
-  "description": "(#plugin_description#)",
+  "description": "A simple support ticket system based on ACF fields.",
   "main": "",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/Svanmark/Wordpress-Plugin-Boilerplate.git"
+    "url": "https://github.com/helsingborg-stad/todo.git"
   },
-  "author": "(#plugin_author#)",
+  "author": "Sebastian Thulin",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/Svanmark/Wordpress-Plugin-Boilerplate/issues"
+    "url": "https://github.com/helsingborg-stad/todo/issues"
   },
-  "homepage": "https://github.com/Svanmark/Wordpress-Plugin-Boilerplate",
+  "homepage": "https://github.com/helsingborg-stad/todo",
   "devDependencies": {
     "gulp": "^3.8.11",
     "gulp-autoprefixer": "^3.1.0",
