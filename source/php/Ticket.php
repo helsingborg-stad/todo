@@ -49,6 +49,7 @@ class Ticket extends \TODO\Entity\PostType
             )
         );
 
+        //Priority in list
         $postType->addTableColumn(
             'priority',
             __('Priority', 'todo'),
@@ -66,6 +67,8 @@ class Ticket extends \TODO\Entity\PostType
             }
         );
 
+
+        //Category in list
         $postType->addTableColumn(
             'category',
             __('Categories'),
@@ -80,6 +83,28 @@ class Ticket extends \TODO\Entity\PostType
                     echo isset($category->name) ? '<span class="'. $category->slug  .'">' . $category->name . '</span>': '';
                     $i++;
                 }
+            }
+        );
+
+        //Customer in list
+        $postType->addTableColumn(
+            'customer',
+            __('Customer'),
+            true,
+            function ($column, $postId) {
+                $customer = get_field('ticket_customer', $postId, true);
+                echo !empty($customer) ? $customer['user_firstname'] . " " . $customer['user_lastname'] : __('No customer', 'todo');
+            }
+        );
+
+        //Customer in list
+        $postType->addTableColumn(
+            'contact',
+            __('Support contact'),
+            true,
+            function ($column, $postId) {
+                $customer = get_field('ticket_support_contact', $postId, true);
+                echo !empty($customer) ? $customer['user_firstname'] . " " . $customer['user_lastname'] : __('No customer', 'todo');
             }
         );
 
