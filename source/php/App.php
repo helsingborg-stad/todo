@@ -22,6 +22,7 @@ class App
     public function init()
     {
         new \TODO\Ticket();
+        new \TODO\UserInterface();
     }
 
     /**

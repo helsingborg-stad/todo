@@ -45,7 +45,7 @@ class Ticket extends \TODO\Entity\PostType
                 'hierarchical'          =>  false,
                 'exclude_from_search'   =>  false,
                 'taxonomies'            =>  array(),
-                'supports'              =>  array('title', 'revisions', 'editor', 'thumbnail')
+                'supports'              =>  array('title', 'revisions', 'editor')
             )
         );
 
@@ -92,6 +92,7 @@ class Ticket extends \TODO\Entity\PostType
      */
     public function taxonomyPriority() : string
     {
+        //Register new taxonomy
         $categories = new \TODO\Entity\Taxonomy(
             __('Priority', 'todo'),
             __('Priorities', 'todo'),
@@ -102,6 +103,12 @@ class Ticket extends \TODO\Entity\PostType
             )
         );
 
+        //Remove deafult UI
+        add_action('admin_menu', function () {
+            remove_meta_box("tagsdiv-todo-priority", self::$postTypeSlug, 'side');
+        });
+
+        //Return taxonomy slug
         return $categories->slug;
     }
 
@@ -111,6 +118,7 @@ class Ticket extends \TODO\Entity\PostType
      */
     public function taxonomyCategory() : string
     {
+        //Register new taxonomy
         $categories = new \TODO\Entity\Taxonomy(
             __('Category', 'todo'),
             __('Categories', 'todo'),
@@ -121,6 +129,12 @@ class Ticket extends \TODO\Entity\PostType
             )
         );
 
+        //Remove deafult UI
+        add_action('admin_menu', function () {
+            remove_meta_box("todo-categorydiv", self::$postTypeSlug, 'side');
+        });
+
+        //Return taxonomy slug
         return $categories->slug;
     }
 }
