@@ -67,7 +67,8 @@ add_action('plugins_loaded', function () {
     $acfExportManager->setExportFolder(TODO_PATH . 'source/php/AcfFields/');
     $acfExportManager->autoExport(array(
         'ticketPriority'          => 'group_59802f5e1d297',
-        'ticketContact'           => 'group_5805e5dc0a3be'
+        'ticketContact'           => 'group_5805e5dc0a3be',
+        'ticketStatus'            => 'group_59808ae3b4d31',
     ));
     $acfExportManager->import();
 });

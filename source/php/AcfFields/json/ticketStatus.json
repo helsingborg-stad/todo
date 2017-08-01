@@ -1,0 +1,49 @@
+[{
+    "key": "group_59808ae3b4d31",
+    "title": "Status",
+    "fields": [
+        {
+            "key": "field_59808ae8f3d6b",
+            "label": "Ticket status",
+            "name": "ticket_status",
+            "type": "radio",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "ticket-status",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "pending": "To do \/ Pending",
+                "doing": "Doing",
+                "done": "Done \/ Closed"
+            },
+            "allow_null": 0,
+            "other_choice": 0,
+            "save_other_choice": 0,
+            "default_value": "pending",
+            "layout": "vertical",
+            "return_format": "value"
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "ticket"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "side",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": 1,
+    "description": ""
+}]
+
