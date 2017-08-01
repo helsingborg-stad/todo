@@ -92,7 +92,7 @@ class Ticket extends \TODO\Entity\PostType
      */
     public function taxonomyPriority() : string
     {
-        $categories = new \WpListings\Entity\Taxonomy(
+        $categories = new \TODO\Entity\Taxonomy(
             __('Priority', 'todo'),
             __('Priorities', 'todo'),
             'todo-priority',
@@ -111,7 +111,7 @@ class Ticket extends \TODO\Entity\PostType
      */
     public function taxonomyCategory() : string
     {
-        $categories = new \WpListings\Entity\Taxonomy(
+        $categories = new \TODO\Entity\Taxonomy(
             __('Category', 'todo'),
             __('Categories', 'todo'),
             'todo-category',

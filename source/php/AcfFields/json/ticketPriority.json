@@ -1,0 +1,46 @@
+[{
+    "key": "group_59802f5e1d297",
+    "title": "Priority",
+    "fields": [
+        {
+            "key": "field_59803130fba89",
+            "label": "Priority level",
+            "name": "ticket_priority",
+            "type": "taxonomy",
+            "instructions": "Select a priority level for this ticket.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "todo-priority",
+                "id": ""
+            },
+            "taxonomy": "todo-priority",
+            "field_type": "radio",
+            "allow_null": 0,
+            "add_term": 0,
+            "save_terms": 1,
+            "load_terms": 0,
+            "return_format": "id",
+            "multiple": 0
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "ticket"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": 1,
+    "description": ""
+}]
+

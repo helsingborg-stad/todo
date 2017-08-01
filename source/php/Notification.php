@@ -33,33 +33,89 @@ class Notification
         $this->sendMail(__("Ticket %s updated", 'todo'), __("Your ticked have a new comment.", 'todo'), $ticketId);
     }
 
-    private function sendMail($tickedId)
+    private function sendMail($ticketTitle, $ticketContent, $ticketId)
     {
-
-        $customerId = get_post_meta($tickedId, 'ticket_customer_id', true);
+        $customerId = get_post_meta($ticketId, 'ticket_customer_id', true);
 
         if (is_numeric($customerId)) {
 
+            //Gather user id details
             $customerData = get_user_by($customerId);
-
-
             $customerContactDetails = array(
-            'userId' => $customerId,
-            'userEmail' => get_user_by($customerId);
-        );
+                'userId' => $customerId,
+                'userEmail' => $customerData->user_email,
+                'userName' => $customerData->first_name . " " . $customerData->last_name
+            );
 
+            //Create mail headers
+            $ticketMailHeaders = array('Content-Type: text/html; charset=UTF-8','From: Todo Tickets <todo@helsingborg.se>');
 
+            //Send mail
+            wp_mail($customerContactDetails['userEmail'], $ticketTitle, $this->makeHtmlEmail($ticketContent, $ticketId), $ticketMailHeaders);
         } else {
             if (defined('WP_DEBUG') && WP_DEBUG) {
-                error_log("Todo WordPress plugin: User id does not exist. Cannot fetch customer.");
+                error_log("Todo WordPress plugin: User id is not specified. Cannot fetch customer.");
             }
         }
+    }
 
-        $customerContactDetails = array(
-            'userId' => $customerId,
-            'userEmail' => get_user_by($customerId);
+    private function makeHtmlEmail($ticketContent, $ticketId)
+    {
+
+        //Try to fetch template, if not readable. Fallback.
+        if (is_readable(TODO_PATH . '/source/html/emailTemplate.html')) {
+            $template = file_get_contents(TODO_PATH . '/source/html/emailTemplate.html');
+        } else {
+            $template = '{{emailcontent}}';
+        }
+
+        //Try to fetch template, if not readable. Fallback.
+        if (is_readable(TODO_PATH . '/source/html/emailTemplate.html')) {
+            $callToAction = file_get_contents(TODO_PATH . '/source/html/callToAction.html');
+        } else {
+            $callToAction = '<a href="{{emailcalltoactionlink}}">{{emailcalltoactiontext}}</a>';
+        }
+
+        //Fetch full arrend
+        $ticketTable = $this->makeTicketTable($ticketId);
+
+        //Glue
+        $content = $ticketContent . "<br/><br/>" .$ticketTable . "<br/><br/>" .$callToAction;
+
+        //Populate
+        $template = str_replace("{{emailcontent}}", $ticketContent, $template);
+        $template = str_replace("{{emailcalltoactionlink}}", get_permalink($ticketId), $template);
+        $template = str_replace("{{emailcalltoactiontext}}", __("View ticket", 'todo'), $template);
+
+        return $ticketContent;
+    }
+
+    private function makeTicketTable($ticketId, $return = "")
+    {
+        //Define what fields to get
+        $fields = array(
+            'ticket_priority' => __("Priority", 'todo'),
+            'ticket_support_contact' => __("Support contact", 'todo'),
         );
 
-        //wp_mail( $to, $subject, $message, $headers, $attachments );
+        //Get data and push to html table
+        if (is_array($fields) && !empty($fields)) {
+            $return .= '<table border="0" cellpadding="0" cellspacing="0"><tbody>';
+
+            foreach ($fields as $fieldKey => $fieldLabel) {
+                $fieldData = get_field($fieldKey, $ticketId, true);
+
+                if (is_array($fieldData)) {
+                    $fieldData = implode(", ", $fieldData);
+                }
+
+                $return .= '<tr><td><strong>' .$fieldLabel. ':</strong> </td><td>' .$fieldData. '</td></tr>';
+            }
+
+            $return .= '</tbody></table>';
+        }
+
+        //Return table structure
+        return  $return;
     }
 }

@@ -1,0 +1,22 @@
+{
+    "name": "helsingborg-stad/todo",
+    "description": "A simple support ticket system based on ACF fields.",
+    "type": "wordpress-plugin",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Sebastian Thulin",
+            "email": "sebastian.thulin@helsingborg.se"
+        }
+    ],
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/helsingborg-stad/acf-export-manager.git"
+        }
+    ],
+    "require": {
+        "composer/installers": "~1.0",
+        "helsingborg-stad/acf-export-manager": ">=1.0.0"
+    }
+}

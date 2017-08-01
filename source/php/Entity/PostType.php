@@ -61,7 +61,7 @@ class PostType
 
         register_post_type($this->slug, $this->args);
 
-        return $this->slug;
+            return $this->slug;
     }
 
     /**
