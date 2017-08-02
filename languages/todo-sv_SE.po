@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Todo\n"
-"POT-Creation-Date: 2017-08-02 13:43+0200\n"
-"PO-Revision-Date: 2017-08-02 13:47+0200\n"
+"POT-Creation-Date: 2017-08-02 13:53+0200\n"
+"PO-Revision-Date: 2017-08-02 13:54+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: sv_SE\n"
@@ -204,8 +204,12 @@ msgid "Ticket"
 msgstr "Ärende"
 
 #: source/php/Ticket.php:34
-msgid "WP Listings could be used for any type of \"buy and sell\" ads."
+msgid ""
+"Todo support tickets makes it easier to know what to do and improves "
+"customer communication."
 msgstr ""
+"Todo support gör det tydligt vad som finns att göra, och förenklar "
+"kommunkationen med dina kunder."
 
 #: source/php/Ticket.php:42
 msgid "ticket"
