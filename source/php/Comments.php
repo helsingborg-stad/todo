@@ -37,7 +37,7 @@ class Comments
         $output = "";
 
         if (isset($_GET['post']) && is_numeric($_GET['post'])) {
-            $previusComments = get_comments(array('post_ID' => $_GET['post']));
+            $previusComments = get_comments(array('post_id' => $_GET['post']));
 
             if (is_array($previusComments) && !empty($previusComments)) {
                 foreach (array_reverse($previusComments) as $comment) {
@@ -56,7 +56,7 @@ class Comments
 
                     $output .= '<tr class="alternate">';
                     $output .= '<td colspan="2">';
-                    $output .= '<span class="content">' .$comment->comment_content. '</span>';
+                    $output .= '<span class="content">' . apply_filters('the_content', $comment->comment_content) . '</span>';
                     $output .= '</td>';
                     $output .= '</tr>';
 
