@@ -1,0 +1,268 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Todo\n"
+"POT-Creation-Date: 2017-08-02 13:43+0200\n"
+"PO-Revision-Date: 2017-08-02 13:47+0200\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: sv_SE\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.8.12\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-WPHeader: todo.php\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
+"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;"
+"_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: *.js\n"
+
+#: source/php/AcfFields/php/ticketComment.php:6
+msgid "Ticket comments"
+msgstr "Ärendets kommentarer"
+
+#: source/php/AcfFields/php/ticketComment.php:10
+msgid "Add new comment"
+msgstr "Lägg till ny kommentar"
+
+#: source/php/AcfFields/php/ticketContact.php:6
+msgid "Contact information"
+msgstr "Kontaktinformation"
+
+#: source/php/AcfFields/php/ticketContact.php:10
+msgid "Reporting customer"
+msgstr "Kundkontakt"
+
+#: source/php/AcfFields/php/ticketContact.php:13
+msgid ""
+"Select the person who reported this issue or who should be notified about "
+"updates about this ticket."
+msgstr ""
+"Välj den person som ska har rapporterat ärendet, eller ska bli uppdaterad i "
+"ärendets status."
+
+#: source/php/AcfFields/php/ticketContact.php:27 source/php/Notification.php:98
+#: source/php/Ticket.php:103
+msgid "Support contact"
+msgstr "Kontaktperson - Support"
+
+#: source/php/AcfFields/php/ticketContact.php:30
+msgid "The person who are in chare of getting this task done at the moment."
+msgstr "Personen som är ansvarig för att genomföra uppgiften."
+
+#: source/php/AcfFields/php/ticketPriority.php:6 source/php/Notification.php:97
+#: source/php/Ticket.php:55 source/php/Ticket.php:138
+msgid "Priority"
+msgstr "Prioritet"
+
+#: source/php/AcfFields/php/ticketPriority.php:10
+msgid "Priority level"
+msgstr "Prioritetsnivå"
+
+#: source/php/AcfFields/php/ticketPriority.php:13
+msgid "Select a priority level for this ticket."
+msgstr "Välj en prioritetsnivå för detta ärende"
+
+#: source/php/AcfFields/php/ticketStatus.php:6
+msgid "Status"
+msgstr "Status"
+
+#: source/php/AcfFields/php/ticketStatus.php:10
+msgid "Ticket status"
+msgstr "Ärendestatus"
+
+#: source/php/AcfFields/php/ticketStatus.php:22
+msgid "To do / Pending"
+msgstr "Att göra"
+
+#: source/php/AcfFields/php/ticketStatus.php:23
+msgid "Doing"
+msgstr "Gör"
+
+#: source/php/AcfFields/php/ticketStatus.php:24
+msgid "Done with action"
+msgstr "Åtgärdad"
+
+#: source/php/AcfFields/php/ticketStatus.php:25
+msgid "Closed without action"
+msgstr "Stängd utan åtgärd"
+
+#: source/php/Entity/PostType.php:48 source/php/Entity/PostType.php:49
+#, php-format
+msgid "Add new %s"
+msgstr "Lägg till nytt %s"
+
+#: source/php/Entity/PostType.php:50 source/php/Entity/Taxonomy.php:33
+#, php-format
+msgid "Edit %s"
+msgstr "Redigera %s"
+
+#: source/php/Entity/PostType.php:51
+#, php-format
+msgid "New %s"
+msgstr "Nytt %s"
+
+#: source/php/Entity/PostType.php:52
+#, php-format
+msgid "View %s"
+msgstr "Visa %s"
+
+#: source/php/Entity/PostType.php:53 source/php/Entity/Taxonomy.php:29
+#, php-format
+msgid "Search %s"
+msgstr "Sök %s"
+
+#: source/php/Entity/PostType.php:54
+#, php-format
+msgid "No %s found"
+msgstr "Kunde inte hitta ditt %s"
+
+#: source/php/Entity/PostType.php:55
+#, php-format
+msgid "No %s found in trash"
+msgstr "Inga %s hittades i papperskorgen"
+
+#: source/php/Entity/PostType.php:56 source/php/Entity/Taxonomy.php:31
+#: source/php/Entity/Taxonomy.php:32
+#, php-format
+msgid "Parent %s:"
+msgstr "Förälder %s"
+
+#: source/php/Entity/Taxonomy.php:30
+#, php-format
+msgid "All %s"
+msgstr "Alla %s"
+
+#: source/php/Entity/Taxonomy.php:34
+#, php-format
+msgid "Update %s"
+msgstr "Uppdatera %s"
+
+#: source/php/Entity/Taxonomy.php:35
+#, php-format
+msgid "Add New %s"
+msgstr "Lägg till nytt %s"
+
+#: source/php/Entity/Taxonomy.php:36
+#, php-format
+msgid "New %s Name"
+msgstr "Ny %s namn"
+
+#: source/php/Notification.php:18
+#, php-format
+msgid "Ticket %s created"
+msgstr "Ärende %s skapat"
+
+#: source/php/Notification.php:18
+msgid ""
+"Your ticket has been approved. You will get a notification when it is done."
+msgstr ""
+"Ditt ärende har tagits emot och öppnats. Du kommer att bli meddelad via "
+"epost när ärendet uppdateras. "
+
+#: source/php/Notification.php:23
+#, php-format
+msgid "Ticket %s pending"
+msgstr "Ärende %s väntar"
+
+#: source/php/Notification.php:23
+msgid ""
+"Your ticket has been created and waiting for administrator approval and "
+"classification."
+msgstr ""
+"Ditt ärende har blivit registrerat. Du blir meddelad när vi har tittat på "
+"det och gett det en prioritetsnivå."
+
+#: source/php/Notification.php:28 source/php/Notification.php:33
+#, php-format
+msgid "Ticket %s updated"
+msgstr "Ärende %s uppdaterat"
+
+#: source/php/Notification.php:28
+msgid "Your ticked have a new priority status."
+msgstr "Ditt ärende har ändrat prioritetsnivå."
+
+#: source/php/Notification.php:33
+msgid "Your ticked have a new comment."
+msgstr "Ditt ärende har en ny kommentar"
+
+#: source/php/Notification.php:88
+msgid "View ticket"
+msgstr "Visa ärende på webben"
+
+#: source/php/Ticket.php:30
+msgctxt "Post type plural"
+msgid "Tickets"
+msgstr "Ärenden"
+
+#: source/php/Ticket.php:31
+msgctxt "Post type singular"
+msgid "Ticket"
+msgstr "Ärende"
+
+#: source/php/Ticket.php:34
+msgid "WP Listings could be used for any type of \"buy and sell\" ads."
+msgstr ""
+
+#: source/php/Ticket.php:42
+msgid "ticket"
+msgstr "arende"
+
+#: source/php/Ticket.php:74 source/php/Ticket.php:165
+msgid "Categories"
+msgstr "Kategorier / Produkter"
+
+#: source/php/Ticket.php:92
+msgid "Customer"
+msgstr "Kundkontakt"
+
+#: source/php/Ticket.php:96 source/php/Ticket.php:107
+msgid "No customer"
+msgstr "Ingen kundkontakt"
+
+#: source/php/Ticket.php:114
+msgid "Task status"
+msgstr "Ärendets status"
+
+#: source/php/Ticket.php:139
+msgid "Priorities"
+msgstr "Prioritet"
+
+#: source/php/Ticket.php:164
+msgid "Category"
+msgstr "Kategori / Produkt"
+
+#: vendor/helsingborg-stad/acf-export-manager/src/AcfExportManager.php:362
+msgid "Export with AcfExportManager"
+msgstr ""
+
+#: vendor/helsingborg-stad/acf-export-manager/src/AcfExportManager.php:406
+#, php-format
+msgid "Exported %d fieldgroup(s)."
+msgstr ""
+
+#. Plugin Name of the plugin/theme
+msgid "Todo"
+msgstr "Att göra - Supportärenden"
+
+#. Plugin URI of the plugin/theme
+msgid "https://github.com/helsingborg-stad/todo"
+msgstr ""
+
+#. Description of the plugin/theme
+msgid "A simple support ticket system based on ACF fields."
+msgstr ""
+
+#. Author of the plugin/theme
+msgid "Sebastian Thulin"
+msgstr ""
+
+#. Author URI of the plugin/theme
+msgid "https://github.com/sebastianthulin"
+msgstr ""
+
+#~ msgid "Done / Closed"
+#~ msgstr "Klar / Stängd"

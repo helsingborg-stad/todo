@@ -21,7 +21,8 @@
             'choices' => array(
                 'pending' => __('To do / Pending', 'todo'),
                 'doing' => __('Doing', 'todo'),
-                'done' => __('Done / Closed', 'todo'),
+                'done' => __('Done with action', 'todo'),
+                'cancelled' => __('Closed without action', 'todo'),
             ),
             'allow_null' => 0,
             'other_choice' => 0,

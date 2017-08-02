@@ -18,7 +18,8 @@
             "choices": {
                 "pending": "To do \/ Pending",
                 "doing": "Doing",
-                "done": "Done \/ Closed"
+                "done": "Done with action",
+                "cancelled": "Closed without action"
             },
             "allow_null": 0,
             "other_choice": 0,
