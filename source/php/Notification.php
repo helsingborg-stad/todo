@@ -9,15 +9,28 @@ class Notification
     {
 
         //Register manual trigger
-        //add_action('acf/render_field/type=message', array($this, 'manualTriggerMetabox'), 15, 1);
         add_filter('acf/load_field/key=field_5981c7635302f', array($this, 'manualTriggerButton'), 10, 3);
 
+        //Show notice
+        add_action('admin_notices', array($this, 'showSendMailNotice'));
 
-// array($this, 'registerManualTriggerMetabox'));
-        /*add_action('publish_ticket', array($this, 'registeredTicket'), 10, 2);
-        add_action('unpublish_ticket', array($this, 'pendingApproval'), 10, 2);
-        add_action('delete_ticket', array($this, 'unpublish'));
-        add_action('delete_ticket', array($this, 'unpublish'));*/
+        //Trigger email
+        add_action('admin_notices', function () {
+            if (isset($_GET['notification']) && $_GET['notification'] == 'true') {
+                $this->sendMail("Ticket title", __("New updates avabile."), $_GET['post']);
+            }
+        });
+    }
+
+    public function showSendMailNotice()
+    {
+        if (isset($_GET['notification']) && $_GET['notification'] == 'true') {
+            echo '<div class="notice notice-success is-dismissible">';
+            echo '<p>';
+            _e('Status update on this ticket has been sent to the customers registered email adress.', 'todo');
+            echo '</p>';
+            echo '</div>';
+        }
     }
 
     public function manualTriggerButton($field)
@@ -28,12 +41,19 @@ class Notification
             $postId = $_GET['post'];
 
             //Get details
-            $lastNotified = get_post_meta($postId, 'last_notification_email', true);
+            $lastNotified   = get_post_meta($postId, 'last_notification_email', true);
             $ticketCustomer = get_post_meta($postId, 'ticket_customer', true);
+
+            //Create link
+            $sendMailLink = admin_url("post.php" . add_query_arg(array(
+                'post'          => $postId,
+                'action'        => 'edit',
+                'notification'  => 'true',
+            )));
 
             //Validate ticket customer
             if ($ticketCustomer) {
-                $field['message'] .= '<a href="#update" class="button button-primary button-large" style="width: 100%; text-align: center; margin-top: 10px;">' . __("Send email", 'todo') . '</a>';
+                $field['message'] .= '<a href="' . $sendMailLink . '" class="button button-primary button-large" style="width: 100%; text-align: center; margin-top: 10px;">' . __("Send email", 'todo') . '</a>';
 
                 if ($lastNotified) {
                     $field['message'] .= '<p class="description">' . __("Last noficiation sent at: "). $lastNotified . '</p>';
@@ -47,40 +67,18 @@ class Notification
 
         return $field;
     }
-/*
-
-    public function ticketOpened($ticketId)
-    {
-        $this->sendMail(__("Ticket %s created", 'todo'), __("Your ticket has been approved. You will get a notification when it is done.", 'todo'), $ticketId);
-    }
-
-    public function ticketPending($ticketId)
-    {
-        $this->sendMail(__("Ticket %s pending", 'todo'), __("Your ticket has been created and waiting for administrator approval and classification.", 'todo'), $ticketId);
-    }
-
-    public function ticketPriority($ticketId)
-    {
-        $this->sendMail(__("Ticket %s updated", 'todo'), __("Your ticked have a new priority status.", 'todo'), $ticketId);
-    }
-
-    public function ticketComment($ticketId)
-    {
-        $this->sendMail(__("Ticket %s updated", 'todo'), __("Your ticked have a new comment.", 'todo'), $ticketId);
-    }
 
     private function sendMail($ticketTitle, $ticketContent, $ticketId)
     {
-        $customerId = get_post_meta($ticketId, 'ticket_customer_id', true);
+        $customer = get_field('ticket_customer', $ticketId);
 
-        if (is_numeric($customerId)) {
+        if (isset($customer->ID) && is_numeric($customer->ID)) {
 
             //Gather user id details
-            $customerData = get_user_by($customerId);
             $customerContactDetails = array(
                 'userId' => $customerId,
-                'userEmail' => $customerData->user_email,
-                'userName' => $customerData->first_name . " " . $customerData->last_name
+                'userEmail' => $customer->user_email,
+                'userName' => $customer->first_name . " " . $customer->last_name
             );
 
             //Create mail headers
@@ -94,8 +92,6 @@ class Notification
             }
         }
     }
-
-    */
 
     private function makeHtmlEmail($ticketContent, $ticketId)
     {
