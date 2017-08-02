@@ -69,6 +69,7 @@ add_action('plugins_loaded', function () {
         'ticketPriority'          => 'group_59802f5e1d297',
         'ticketContact'           => 'group_5805e5dc0a3be',
         'ticketStatus'            => 'group_59808ae3b4d31',
+        'ticketComment'           => 'group_598181c6ea020',
     ));
     $acfExportManager->import();
 });
