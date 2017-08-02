@@ -108,6 +108,22 @@ class Ticket extends \TODO\Entity\PostType
             }
         );
 
+        //Status in list
+        $postType->addTableColumn(
+            'status',
+            __('Task status'),
+            true,
+            function ($column, $postId) {
+                $status = get_field('ticket_status', $postId, true);
+
+                if (is_array($status)) {
+                    echo '<span class="ticket-status ticket-status-' . $status['label'] . '">' . $status['label'] . '</span>';
+                } else {
+                    echo "-";
+                }
+            }
+        );
+
         return $postType->slug;
     }
 
