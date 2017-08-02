@@ -57,12 +57,17 @@ class Ticket extends \TODO\Entity\PostType
             function ($column, $postId) {
                 $i = 0;
                 $priorities = get_the_terms($postId, self::$priorityTaxonomySlug);
-                foreach ((array)$priorities as $priority) {
-                    if ($i > 0) {
-                        echo ', ';
+
+                if (empty($priorities)) {
+                    echo __("Unprioritized", 'todo');
+                } else {
+                    foreach ((array)$priorities as $priority) {
+                        if ($i > 0) {
+                            echo ', ';
+                        }
+                        echo isset($priority->name) ? '<span class="'. $priority->slug  .'">' . $priority->name . '</span>': '';
+                        $i++;
                     }
-                    echo isset($priority->name) ? '<span class="'. $priority->slug  .'">' . $priority->name . '</span>': '';
-                    $i++;
                 }
             }
         );
@@ -71,17 +76,22 @@ class Ticket extends \TODO\Entity\PostType
         //Category in list
         $postType->addTableColumn(
             'category',
-            __('Categories'),
+            __('Categories', 'todo'),
             true,
             function ($column, $postId) {
                 $i = 0;
                 $categories = get_the_terms($postId, self::$categoryTaxonomySlug);
-                foreach ((array)$categories as $category) {
-                    if ($i > 0) {
-                        echo ', ';
+
+                if (empty($categories)) {
+                    echo __("Uncategorized", 'todo');
+                } else {
+                    foreach ((array)$categories as $category) {
+                        if ($i > 0) {
+                            echo ', ';
+                        }
+                        echo isset($category->name) ? '<span class="'. $category->slug  .'">' . $category->name . '</span>': '';
+                        $i++;
                     }
-                    echo isset($category->name) ? '<span class="'. $category->slug  .'">' . $category->name . '</span>': '';
-                    $i++;
                 }
             }
         );
@@ -89,7 +99,7 @@ class Ticket extends \TODO\Entity\PostType
         //Customer in list
         $postType->addTableColumn(
             'customer',
-            __('Customer'),
+            __('Customer', 'todo'),
             true,
             function ($column, $postId) {
                 $customer = get_field('ticket_customer', $postId, true);
@@ -100,7 +110,7 @@ class Ticket extends \TODO\Entity\PostType
         //Customer in list
         $postType->addTableColumn(
             'contact',
-            __('Support contact'),
+            __('Support contact', 'todo'),
             true,
             function ($column, $postId) {
                 $customer = get_field('ticket_support_contact', $postId, true);
@@ -111,7 +121,7 @@ class Ticket extends \TODO\Entity\PostType
         //Status in list
         $postType->addTableColumn(
             'status',
-            __('Task status'),
+            __('Task status', 'todo'),
             true,
             function ($column, $postId) {
                 $status = get_field('ticket_status', $postId, true);
@@ -169,11 +179,6 @@ class Ticket extends \TODO\Entity\PostType
                 'hierarchical' => true
             )
         );
-
-        //Remove deafult UI
-        add_action('admin_menu', function () {
-            remove_meta_box("todo-categorydiv", self::$postTypeSlug, 'side');
-        });
 
         //Return taxonomy slug
         return $categories->slug;
