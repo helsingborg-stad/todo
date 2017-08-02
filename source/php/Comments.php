@@ -40,19 +40,29 @@ class Comments
             $previusComments = get_comments(array('post_ID' => $_GET['post']));
 
             if (is_array($previusComments) && !empty($previusComments)) {
-                $output .= '<ul id="ticket-comments">';
+                foreach (array_reverse($previusComments) as $comment) {
+                    $output .= '<table class="ticket-comments table widefat fixed" style="margin-top: 20px;">';
 
-                foreach ($previusComments as $comment) {
-                    $output .= '<li>';
-                        $output .= '<span class="header">';
-                            $output .= '<span class="username">' .$comment->comment_content. '</span>';
-                            $output .= '<span class="time">' .$comment->comment_date. '</span>';
-                        $output .= '</span>';
-                        $output .= '<span class="content">' .$comment->comment_content. '</span>';
-                    $output .= '</li>';
+                    //Header
+                    $output .= '<thead>';
+                    $output .= '<tr>';
+                    $output .= '<th class="manage-column"><strong>' .$comment->comment_author. '</strong></th>';
+                    $output .= '<th class="manage-column">' .$comment->comment_date. '</th>';
+                    $output .= '</tr>';
+                    $output .= '</thead>';
+
+                    //Content
+                    $output .= '<tbody>';
+
+                    $output .= '<tr class="alternate">';
+                    $output .= '<td colspan="2">';
+                    $output .= '<span class="content">' .$comment->comment_content. '</span>';
+                    $output .= '</td>';
+                    $output .= '</tr>';
+
+                    $output .= '</tbody>';
+                    $output .= '</table>';
                 }
-
-                $output .= '</ul>';
             }
         }
 
