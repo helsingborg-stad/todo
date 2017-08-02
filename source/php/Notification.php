@@ -7,11 +7,47 @@ class Notification
 
     public function __construct()
     {
+
+        //Register manual trigger
+        //add_action('acf/render_field/type=message', array($this, 'manualTriggerMetabox'), 15, 1);
+        add_filter('acf/load_field/key=field_5981c7635302f', array($this, 'manualTriggerButton'), 10, 3);
+
+
+// array($this, 'registerManualTriggerMetabox'));
         /*add_action('publish_ticket', array($this, 'registeredTicket'), 10, 2);
         add_action('unpublish_ticket', array($this, 'pendingApproval'), 10, 2);
         add_action('delete_ticket', array($this, 'unpublish'));
         add_action('delete_ticket', array($this, 'unpublish'));*/
     }
+
+    public function manualTriggerButton($field)
+    {
+        if (isset($_GET['post']) && is_numeric($_GET['post'])) {
+
+            //Set post id
+            $postId = $_GET['post'];
+
+            //Get details
+            $lastNotified = get_post_meta($postId, 'last_notification_email', true);
+            $ticketCustomer = get_post_meta($postId, 'ticket_customer', true);
+
+            //Validate ticket customer
+            if ($ticketCustomer) {
+                $field['message'] .= '<a href="#update" class="button button-primary button-large" style="width: 100%; text-align: center; margin-top: 10px;">' . __("Send email", 'todo') . '</a>';
+
+                if ($lastNotified) {
+                    $field['message'] .= '<p class="description">' . __("Last noficiation sent at: "). $lastNotified . '</p>';
+                }
+            } else {
+                $field['message'] = __("Please select a customer to enable this feature.", 'todo');
+            }
+        } else {
+            $field['message'] = __("Please save this ticket before trying to send the user a email.", 'todo');
+        }
+
+        return $field;
+    }
+/*
 
     public function ticketOpened($ticketId)
     {
@@ -58,6 +94,8 @@ class Notification
             }
         }
     }
+
+    */
 
     private function makeHtmlEmail($ticketContent, $ticketId)
     {

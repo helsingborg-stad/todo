@@ -24,6 +24,7 @@ class App
         new \TODO\Ticket();
         new \TODO\UserInterface();
         new \TODO\Comments();
+        new \TODO\Notification();
     }
 
     /**

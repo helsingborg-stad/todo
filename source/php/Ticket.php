@@ -7,6 +7,7 @@ class Ticket extends \TODO\Entity\PostType
     public static $postTypeSlug;
     public static $categoryTaxonomySlug;
     public static $priorityTaxonomySlug;
+    public static $statusTaxonomySlug;
 
     public function __construct()
     {
@@ -17,6 +18,7 @@ class Ticket extends \TODO\Entity\PostType
         //Taxonomy
         self::$categoryTaxonomySlug = $this->taxonomyCategory();
         self::$priorityTaxonomySlug = $this->taxonomyPriority();
+        self::$statusTaxonomySlug = $this->taxonomyStatus();
     }
 
     /**
@@ -124,12 +126,19 @@ class Ticket extends \TODO\Entity\PostType
             __('Task status', 'todo'),
             true,
             function ($column, $postId) {
-                $status = get_field('ticket_status', $postId, true);
+                $i = 0;
+                $categories = get_the_terms($postId, self::$statusTaxonomySlug);
 
-                if (is_array($status)) {
-                    echo '<span class="ticket-status ticket-status-' . $status['label'] . '">' . $status['label'] . '</span>';
+                if (empty($categories)) {
+                    echo __("Pending", 'todo');
                 } else {
-                    echo "-";
+                    foreach ((array)$statuses as $status) {
+                        if ($i > 0) {
+                            echo ', ';
+                        }
+                        echo isset($status->name) ? '<span class="'. $status->slug  .'">' . $status->name . '</span>': '';
+                        $i++;
+                    }
                 }
             }
         );
@@ -157,6 +166,32 @@ class Ticket extends \TODO\Entity\PostType
         //Remove deafult UI
         add_action('admin_menu', function () {
             remove_meta_box("tagsdiv-todo-priority", self::$postTypeSlug, 'side');
+        });
+
+        //Return taxonomy slug
+        return $categories->slug;
+    }
+
+    /**
+     * Create status taxonomy
+     * @return void
+     */
+    public function taxonomyStatus() : string
+    {
+        //Register new taxonomy
+        $categories = new \TODO\Entity\Taxonomy(
+            __('Status', 'todo'),
+            __('Statuses', 'todo'),
+            'todo-status',
+            array('ticket'),
+            array(
+                'hierarchical' => false
+            )
+        );
+
+        //Remove deafult UI
+        add_action('admin_menu', function () {
+            remove_meta_box("tagsdiv-todo-status", self::$postTypeSlug, 'side');
         });
 
         //Return taxonomy slug

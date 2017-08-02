@@ -2,30 +2,25 @@
 
 if (function_exists('acf_add_local_field_group')) {
     acf_add_local_field_group(array(
-    'key' => 'group_59808ae3b4d31',
-    'title' => __('Status', 'todo'),
+    'key' => 'group_5981c75a143dc',
+    'title' => __('Update customer', 'todo'),
     'fields' => array(
         0 => array(
-            'key' => 'field_59808ae8f3d6b',
-            'label' => __('Ticket status', 'todo'),
-            'name' => 'ticket_status',
-            'type' => 'taxonomy',
+            'key' => 'field_5981c7635302f',
+            'label' => __('Send update email', 'todo'),
+            'name' => '',
+            'type' => 'message',
             'instructions' => '',
             'required' => 0,
             'conditional_logic' => 0,
             'wrapper' => array(
-                'width' => 'ticket-status',
+                'width' => '',
                 'class' => '',
                 'id' => '',
             ),
-            'taxonomy' => 'todo-status',
-            'field_type' => 'radio',
-            'allow_null' => 0,
-            'add_term' => 0,
-            'save_terms' => 1,
-            'load_terms' => 1,
-            'return_format' => 'id',
-            'multiple' => 0,
+            'message' => __('Manually send an update to the customer about this arrend. The customer will get a link to the arrend and a summary by email.Please save this ticket before trying to send the user a email.', 'todo'),
+            'new_lines' => 'wpautop',
+            'esc_html' => 0,
         ),
     ),
     'location' => array(
