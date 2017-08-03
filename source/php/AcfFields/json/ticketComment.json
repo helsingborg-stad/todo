@@ -19,6 +19,46 @@
             "tabs": "visual",
             "toolbar": "basic",
             "media_upload": 0
+        },
+        {
+            "key": "field_5982c0ec0f328",
+            "label": "Files",
+            "name": "ticket_add_files",
+            "type": "repeater",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "collapsed": "",
+            "min": "",
+            "max": "",
+            "layout": "table",
+            "button_label": "Add file",
+            "sub_fields": [
+                {
+                    "key": "field_5982c15b0f329",
+                    "label": "Files",
+                    "name": "ticket_add_files_file",
+                    "type": "file",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "return_format": "array",
+                    "library": "uploadedTo",
+                    "min_size": "",
+                    "max_size": 20,
+                    "mime_types": ""
+                }
+            ]
         }
     ],
     "location": [
