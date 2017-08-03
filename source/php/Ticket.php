@@ -6,6 +6,7 @@ class Ticket extends \TODO\Entity\PostType
 {
     public static $postTypeSlug;
     public static $categoryTaxonomySlug;
+    public static $typeTaxonomySlug;
     public static $priorityTaxonomySlug;
     public static $statusTaxonomySlug;
 
@@ -17,6 +18,7 @@ class Ticket extends \TODO\Entity\PostType
 
         //Taxonomy
         self::$categoryTaxonomySlug = $this->taxonomyCategory();
+        self::$typeTaxonomySlug = $this->taxonomyType();
         self::$priorityTaxonomySlug = $this->taxonomyPriority();
         self::$statusTaxonomySlug = $this->taxonomyStatus();
     }
@@ -98,6 +100,29 @@ class Ticket extends \TODO\Entity\PostType
             }
         );
 
+        //Type in list
+        $postType->addTableColumn(
+            'type',
+            __('Type', 'todo'),
+            true,
+            function ($column, $postId) {
+                $i = 0;
+                $types = get_the_terms($postId, self::$typeTaxonomySlug);
+
+                if (empty($types)) {
+                    echo __("Undefined", 'todo');
+                } else {
+                    foreach ((array)$types as $type) {
+                        if ($i > 0) {
+                            echo ', ';
+                        }
+                        echo isset($type->name) ? '<span class="'. $type->slug  .'">' . $type->name . '</span>': '';
+                        $i++;
+                    }
+                }
+            }
+        );
+
         //Customer in list
         $postType->addTableColumn(
             'customer',
@@ -127,9 +152,9 @@ class Ticket extends \TODO\Entity\PostType
             true,
             function ($column, $postId) {
                 $i = 0;
-                $categories = get_the_terms($postId, self::$statusTaxonomySlug);
+                $statuses = get_the_terms($postId, self::$statusTaxonomySlug);
 
-                if (empty($categories)) {
+                if (empty($statuses)) {
                     echo __("Pending", 'todo');
                 } else {
                     foreach ((array)$statuses as $status) {
@@ -147,8 +172,8 @@ class Ticket extends \TODO\Entity\PostType
     }
 
     /**
-     * Create category taxonomy
-     * @return void
+     * Create priority taxonomy
+     * @return string
      */
     public function taxonomyPriority() : string
     {
@@ -174,7 +199,7 @@ class Ticket extends \TODO\Entity\PostType
 
     /**
      * Create status taxonomy
-     * @return void
+     * @return string
      */
     public function taxonomyStatus() : string
     {
@@ -199,8 +224,8 @@ class Ticket extends \TODO\Entity\PostType
     }
 
     /**
-     * Create priority taxonomy
-     * @return void
+     * Create category taxonomy
+     * @return string
      */
     public function taxonomyCategory() : string
     {
@@ -214,6 +239,33 @@ class Ticket extends \TODO\Entity\PostType
                 'hierarchical' => true
             )
         );
+
+        //Return taxonomy slug
+        return $categories->slug;
+    }
+
+
+    /**
+     * Create type taxonomy
+     * @return string
+     */
+    public function taxonomyType() : string
+    {
+        //Register new taxonomy
+        $categories = new \TODO\Entity\Taxonomy(
+            __('Type', 'todo'),
+            __('Types', 'todo'),
+            'todo-type',
+            array('ticket'),
+            array(
+                'hierarchical' => true
+            )
+        );
+
+        //Remove deafult UI
+        add_action('admin_menu', function () {
+            remove_meta_box("todo-typediv", self::$postTypeSlug, 'side');
+        });
 
         //Return taxonomy slug
         return $categories->slug;
