@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Todo\n"
-"POT-Creation-Date: 2017-08-02 14:01+0200\n"
-"PO-Revision-Date: 2017-08-02 14:01+0200\n"
+"POT-Creation-Date: 2017-08-03 13:55+0200\n"
+"PO-Revision-Date: 2017-08-03 14:01+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: sv_SE\n"
@@ -28,6 +28,19 @@ msgstr "Ärendets kommentarer"
 msgid "Add new comment"
 msgstr "Lägg till ny kommentar"
 
+#: source/php/AcfFields/php/ticketComment.php:28
+#: source/php/AcfFields/php/ticketComment.php:47
+msgid "Files"
+msgstr "Bifogade filer"
+
+#: source/php/AcfFields/php/ticketComment.php:31
+msgid ""
+"Note: You have to write a note in the \"comment\" field to submit new files. "
+"Otherwise they will be ignored."
+msgstr ""
+"Notera att du behöver lägga en kommentar för att kunna bifoga filer. Om du "
+"inte gör detta, kommer inget att hända. "
+
 #: source/php/AcfFields/php/ticketContact.php:6
 msgid "Contact information"
 msgstr "Kontaktinformation"
@@ -44,8 +57,8 @@ msgstr ""
 "Välj den person som ska har rapporterat ärendet, eller ska bli uppdaterad i "
 "ärendets status."
 
-#: source/php/AcfFields/php/ticketContact.php:27 source/php/Notification.php:98
-#: source/php/Ticket.php:103
+#: source/php/AcfFields/php/ticketContact.php:27
+#: source/php/Notification.php:132 source/php/Ticket.php:128
 msgid "Support contact"
 msgstr "Kontaktperson - Support"
 
@@ -53,8 +66,26 @@ msgstr "Kontaktperson - Support"
 msgid "The person who are in chare of getting this task done at the moment."
 msgstr "Personen som är ansvarig för att genomföra uppgiften."
 
-#: source/php/AcfFields/php/ticketPriority.php:6 source/php/Notification.php:97
-#: source/php/Ticket.php:55 source/php/Ticket.php:138
+#: source/php/AcfFields/php/ticketNotification.php:6
+msgid "Update customer"
+msgstr "Uppdatera kund"
+
+#: source/php/AcfFields/php/ticketNotification.php:10
+msgid "Send update email"
+msgstr "Skicka statusmeddelande"
+
+#: source/php/AcfFields/php/ticketNotification.php:21
+msgid ""
+"Manually send an update to the customer about this arrend. The customer will "
+"get a link to the arrend and a summary by email.Please save this ticket "
+"before trying to send the user a email."
+msgstr ""
+"Klicka på knappen nedan för att uppdatera kunden i det här ärendet. Kunden "
+"får en länk till ärendet, och en summering direkt i sin inkorg."
+
+#: source/php/AcfFields/php/ticketPriority.php:6
+#: source/php/Notification.php:131 source/php/Ticket.php:59
+#: source/php/Ticket.php:166
 msgid "Priority"
 msgstr "Prioritet"
 
@@ -66,7 +97,7 @@ msgstr "Prioritetsnivå"
 msgid "Select a priority level for this ticket."
 msgstr "Välj en prioritetsnivå för detta ärende"
 
-#: source/php/AcfFields/php/ticketStatus.php:6
+#: source/php/AcfFields/php/ticketStatus.php:6 source/php/Ticket.php:198
 msgid "Status"
 msgstr "Status"
 
@@ -74,21 +105,18 @@ msgstr "Status"
 msgid "Ticket status"
 msgstr "Ärendestatus"
 
-#: source/php/AcfFields/php/ticketStatus.php:22
-msgid "To do / Pending"
-msgstr "Att göra"
+#: source/php/AcfFields/php/ticketType.php:6 source/php/Ticket.php:98
+#: source/php/Ticket.php:258
+msgid "Type"
+msgstr "Typ"
 
-#: source/php/AcfFields/php/ticketStatus.php:23
-msgid "Doing"
-msgstr "Gör"
+#: source/php/AcfFields/php/ticketType.php:10
+msgid "Type of improvement"
+msgstr "Typ av förbättring"
 
-#: source/php/AcfFields/php/ticketStatus.php:24
-msgid "Done with action"
-msgstr "Åtgärdad"
-
-#: source/php/AcfFields/php/ticketStatus.php:25
-msgid "Closed without action"
-msgstr "Stängd utan åtgärd"
+#: source/php/Entity/Filter.php:26
+msgid "Show All"
+msgstr "Visa alla"
 
 #: source/php/Entity/PostType.php:48 source/php/Entity/PostType.php:49
 #, php-format
@@ -151,59 +179,49 @@ msgstr "Lägg till nytt %s"
 msgid "New %s Name"
 msgstr "Ny %s namn"
 
-#: source/php/Notification.php:18
-#, php-format
-msgid "Ticket %s created"
-msgstr "Ärende %s skapat"
+#: source/php/Notification.php:20
+msgid "New updates avabile."
+msgstr "Nya uppdateringar tillgängliga"
 
-#: source/php/Notification.php:18
+#: source/php/Notification.php:30
 msgid ""
-"Your ticket has been approved. You will get a notification when it is done."
+"Status update on this ticket has been sent to the customers registered email "
+"adress."
 msgstr ""
-"Ditt ärende har tagits emot och öppnats. Du kommer att bli meddelad via "
-"epost när ärendet uppdateras. "
+"Statusuppdateringen har skickats till kundens registrerade epostadress."
 
-#: source/php/Notification.php:23
-#, php-format
-msgid "Ticket %s pending"
-msgstr "Ärende %s väntar"
+#: source/php/Notification.php:56
+msgid "Send email"
+msgstr "Skicka meddelande"
 
-#: source/php/Notification.php:23
-msgid ""
-"Your ticket has been created and waiting for administrator approval and "
-"classification."
+#: source/php/Notification.php:59
+msgid "Last noficiation sent at: "
+msgstr "Senaste notifiering skickades"
+
+#: source/php/Notification.php:62
+msgid "Please select a customer to enable this feature."
+msgstr "Vänligen välj en kund i listan för att aktivera den här funktionen."
+
+#: source/php/Notification.php:65
+msgid "Please save this ticket before trying to send the user a email."
 msgstr ""
-"Ditt ärende har blivit registrerat. Du blir meddelad när vi har tittat på "
-"det och gett det en prioritetsnivå."
+"Vänligen spara det här ärendet innan du skickar ett mail med ny status."
 
-#: source/php/Notification.php:28 source/php/Notification.php:33
-#, php-format
-msgid "Ticket %s updated"
-msgstr "Ärende %s uppdaterat"
-
-#: source/php/Notification.php:28
-msgid "Your ticked have a new priority status."
-msgstr "Ditt ärende har ändrat prioritetsnivå."
-
-#: source/php/Notification.php:33
-msgid "Your ticked have a new comment."
-msgstr "Ditt ärende har en ny kommentar"
-
-#: source/php/Notification.php:88
+#: source/php/Notification.php:122
 msgid "View ticket"
 msgstr "Visa ärende på webben"
 
-#: source/php/Ticket.php:30
+#: source/php/Ticket.php:34
 msgctxt "Post type plural"
 msgid "Tickets"
 msgstr "Ärenden"
 
-#: source/php/Ticket.php:31
+#: source/php/Ticket.php:35
 msgctxt "Post type singular"
 msgid "Ticket"
 msgstr "Ärende"
 
-#: source/php/Ticket.php:34
+#: source/php/Ticket.php:38
 msgid ""
 "Todo support tickets makes it easier to know what to do and improves "
 "customer communication."
@@ -211,33 +229,61 @@ msgstr ""
 "Todo support gör det tydligt vad som finns att göra, och förenklar "
 "kommunkationen med dina kunder."
 
-#: source/php/Ticket.php:42
+#: source/php/Ticket.php:46
 msgid "ticket"
 msgstr "arende"
 
-#: source/php/Ticket.php:74 source/php/Ticket.php:165
+#: source/php/Ticket.php:66
+msgid "Unprioritized"
+msgstr "Oprioriterad"
+
+#: source/php/Ticket.php:79 source/php/Ticket.php:231
 msgid "Categories"
 msgstr "Kategorier / Produkter"
 
-#: source/php/Ticket.php:92
+#: source/php/Ticket.php:86
+msgid "Uncategorized"
+msgstr "Okategoriserad"
+
+#: source/php/Ticket.php:105
+msgid "Undefined"
+msgstr "Odefinierad"
+
+#: source/php/Ticket.php:117
 msgid "Customer"
 msgstr "Kundkontakt"
 
-#: source/php/Ticket.php:96 source/php/Ticket.php:107
+#: source/php/Ticket.php:121
 msgid "No customer"
 msgstr "Ingen kundkontakt"
 
-#: source/php/Ticket.php:114
+#: source/php/Ticket.php:132
+msgid "No contact"
+msgstr "Ingen kontakt"
+
+#: source/php/Ticket.php:139
 msgid "Task status"
 msgstr "Ärendets status"
 
-#: source/php/Ticket.php:139
+#: source/php/Ticket.php:146
+msgid "Pending"
+msgstr "Vilande"
+
+#: source/php/Ticket.php:167
 msgid "Priorities"
 msgstr "Prioritet"
 
-#: source/php/Ticket.php:164
+#: source/php/Ticket.php:199
+msgid "Statuses"
+msgstr "Status"
+
+#: source/php/Ticket.php:230
 msgid "Category"
 msgstr "Kategori / Produkt"
+
+#: source/php/Ticket.php:259
+msgid "Types"
+msgstr "Typer"
 
 #: vendor/helsingborg-stad/acf-export-manager/src/AcfExportManager.php:362
 msgid "Export with AcfExportManager"
@@ -258,7 +304,7 @@ msgstr ""
 
 #. Description of the plugin/theme
 msgid "A simple support ticket system based on ACF fields."
-msgstr ""
+msgstr "Ett enkelt ärendehanteringssystem baserat på ACF. "
 
 #. Author of the plugin/theme
 msgid "Sebastian Thulin"
@@ -267,6 +313,47 @@ msgstr ""
 #. Author URI of the plugin/theme
 msgid "https://github.com/sebastianthulin"
 msgstr ""
+
+#~ msgid "To do / Pending"
+#~ msgstr "Att göra"
+
+#~ msgid "Doing"
+#~ msgstr "Gör"
+
+#~ msgid "Done with action"
+#~ msgstr "Åtgärdad"
+
+#~ msgid "Closed without action"
+#~ msgstr "Stängd utan åtgärd"
+
+#~ msgid "Ticket %s created"
+#~ msgstr "Ärende %s skapat"
+
+#~ msgid ""
+#~ "Your ticket has been approved. You will get a notification when it is "
+#~ "done."
+#~ msgstr ""
+#~ "Ditt ärende har tagits emot och öppnats. Du kommer att bli meddelad via "
+#~ "epost när ärendet uppdateras. "
+
+#~ msgid "Ticket %s pending"
+#~ msgstr "Ärende %s väntar"
+
+#~ msgid ""
+#~ "Your ticket has been created and waiting for administrator approval and "
+#~ "classification."
+#~ msgstr ""
+#~ "Ditt ärende har blivit registrerat. Du blir meddelad när vi har tittat på "
+#~ "det och gett det en prioritetsnivå."
+
+#~ msgid "Ticket %s updated"
+#~ msgstr "Ärende %s uppdaterat"
+
+#~ msgid "Your ticked have a new priority status."
+#~ msgstr "Ditt ärende har ändrat prioritetsnivå."
+
+#~ msgid "Your ticked have a new comment."
+#~ msgstr "Ditt ärende har en ny kommentar"
 
 #~ msgid "Done / Closed"
 #~ msgstr "Klar / Stängd"
