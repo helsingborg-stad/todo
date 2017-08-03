@@ -46,7 +46,7 @@ class Comments
                     $filesMeta = get_comment_meta($comment->comment_ID, 'ticket_comment_files', true);
 
                     //Start
-                    $output .= '<table class="ticket-comments table widefat fixed" style="margin-top: 20px;">';
+                    $output .= '<table class="ticket-comments table widefat fixed">';
 
                     //Header
                     $output .= '<thead>';

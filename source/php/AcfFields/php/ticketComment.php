@@ -28,7 +28,7 @@
             'label' => __('Files', 'todo'),
             'name' => 'ticket_add_files',
             'type' => 'repeater',
-            'instructions' => '',
+            'instructions' => __('Note: You have to write a note in the "comment" field to submit new files. Otherwise they will be ignored.', 'todo'),
             'required' => 0,
             'conditional_logic' => 0,
             'wrapper' => array(

@@ -31,8 +31,12 @@ class App
      * Enqueue required style
      * @return void
      */
-    public function enqueueStyles()
+    public function enqueueStyles($hook)
     {
+        if (!in_array($hook, array("edit.php", "post.php"))) {
+            return;
+        }
+        wp_enqueue_style('todo-admin', TODO_URL . '/dist/css/todo.min.css');
     }
 
     /**

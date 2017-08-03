@@ -72,6 +72,7 @@ add_action('plugins_loaded', function () {
         'ticketStatus'            => 'group_59808ae3b4d31',
         'ticketComment'           => 'group_598181c6ea020',
         'ticketNotification'      => 'group_5981c75a143dc',
+        'ticketColors'            => 'group_5982cf5904273',
     ));
     $acfExportManager->import();
 });

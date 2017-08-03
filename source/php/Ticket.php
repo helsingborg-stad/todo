@@ -116,7 +116,7 @@ class Ticket extends \TODO\Entity\PostType
                         if ($i > 0) {
                             echo ', ';
                         }
-                        echo isset($type->name) ? '<span class="'. $type->slug  .'">' . $type->name . '</span>': '';
+                        echo isset($type->name) ? '<span style="background: ' . $this->taxonomyColor($type->term_id, self::$typeTaxonomySlug). ';" class="type-term-pill '. $type->slug  .'">' . $type->name . '</span>': '';
                         $i++;
                     }
                 }
@@ -269,5 +269,15 @@ class Ticket extends \TODO\Entity\PostType
 
         //Return taxonomy slug
         return $categories->slug;
+    }
+
+    /**
+     * Returns colorcode by taxonomy id
+     * @return string
+     */
+
+    public function taxonomyColor($termId, $taxonomySlug) : string
+    {
+        return get_field('taxonomy_color', $taxonomySlug . '_' . $termId);
     }
 }
