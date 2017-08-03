@@ -63,14 +63,10 @@ class Ticket extends \TODO\Entity\PostType
                 $priorities = get_the_terms($postId, self::$priorityTaxonomySlug);
 
                 if (empty($priorities)) {
-                    echo __("Unprioritized", 'todo');
+                    echo '<span class="todo-term-pill">' . __("Unprioritized", 'todo') . '</span>';
                 } else {
                     foreach ((array)$priorities as $priority) {
-                        if ($i > 0) {
-                            echo ', ';
-                        }
-                        echo isset($priority->name) ? '<span class="'. $priority->slug  .'">' . $priority->name . '</span>': '';
-                        $i++;
+                        echo isset($priority->name) ? '<span style="background: ' . $this->taxonomyColor($priority->term_id, self::$priorityTaxonomySlug). ';" class="todo-term-pill '. $priority->slug  .'">' . $priority->name . '</span>': '';
                     }
                 }
             }
@@ -87,14 +83,10 @@ class Ticket extends \TODO\Entity\PostType
                 $categories = get_the_terms($postId, self::$categoryTaxonomySlug);
 
                 if (empty($categories)) {
-                    echo __("Uncategorized", 'todo');
+                    echo '<span class="todo-term-pill">' . __("Uncategorized", 'todo') . '</span>';
                 } else {
                     foreach ((array)$categories as $category) {
-                        if ($i > 0) {
-                            echo ', ';
-                        }
-                        echo isset($category->name) ? '<span class="'. $category->slug  .'">' . $category->name . '</span>': '';
-                        $i++;
+                        echo isset($category->name) ? '<span style="background: ' . $this->taxonomyColor($category->term_id, self::$categoryTaxonomySlug). ';" class="todo-term-pill '. $category->slug  .'">' . $category->name . '</span>': '';
                     }
                 }
             }
@@ -110,14 +102,10 @@ class Ticket extends \TODO\Entity\PostType
                 $types = get_the_terms($postId, self::$typeTaxonomySlug);
 
                 if (empty($types)) {
-                    echo __("Undefined", 'todo');
+                    echo '<span class="todo-term-pill">' . __("Undefined", 'todo') . '</span>';
                 } else {
                     foreach ((array)$types as $type) {
-                        if ($i > 0) {
-                            echo ', ';
-                        }
-                        echo isset($type->name) ? '<span style="background: ' . $this->taxonomyColor($type->term_id, self::$typeTaxonomySlug). ';" class="type-term-pill '. $type->slug  .'">' . $type->name . '</span>': '';
-                        $i++;
+                        echo isset($type->name) ? '<span style="background: ' . $this->taxonomyColor($type->term_id, self::$typeTaxonomySlug). ';" class="todo-term-pill '. $type->slug  .'">' . $type->name . '</span>': '';
                     }
                 }
             }
@@ -141,7 +129,7 @@ class Ticket extends \TODO\Entity\PostType
             true,
             function ($column, $postId) {
                 $customer = get_field('ticket_support_contact', $postId, true);
-                echo !empty($customer) ? $customer['user_firstname'] . " " . $customer['user_lastname'] : __('No customer', 'todo');
+                echo !empty($customer) ? $customer['user_firstname'] . " " . $customer['user_lastname'] : __('No contact', 'todo');
             }
         );
 
@@ -155,14 +143,10 @@ class Ticket extends \TODO\Entity\PostType
                 $statuses = get_the_terms($postId, self::$statusTaxonomySlug);
 
                 if (empty($statuses)) {
-                    echo __("Pending", 'todo');
+                    echo '<span class="todo-term-pill">' . __("Pending", 'todo') . '</span>';
                 } else {
                     foreach ((array)$statuses as $status) {
-                        if ($i > 0) {
-                            echo ', ';
-                        }
-                        echo isset($status->name) ? '<span class="'. $status->slug  .'">' . $status->name . '</span>': '';
-                        $i++;
+                        echo isset($status->name) ? '<span style="background: ' . $this->taxonomyColor($status->term_id, self::$statusTaxonomySlug). ';" class="todo-term-pill '. $status->slug  .'">' . $status->name . '</span>': '';
                     }
                 }
             }
@@ -193,6 +177,12 @@ class Ticket extends \TODO\Entity\PostType
             remove_meta_box("tagsdiv-todo-priority", self::$postTypeSlug, 'side');
         });
 
+        //Add filter
+        new \TODO\Entity\Filter(
+            'todo-priority',
+            'ticket'
+        );
+
         //Return taxonomy slug
         return $categories->slug;
     }
@@ -219,6 +209,12 @@ class Ticket extends \TODO\Entity\PostType
             remove_meta_box("tagsdiv-todo-status", self::$postTypeSlug, 'side');
         });
 
+        //Add filter
+        new \TODO\Entity\Filter(
+            'todo-status',
+            'ticket'
+        );
+
         //Return taxonomy slug
         return $categories->slug;
     }
@@ -238,6 +234,12 @@ class Ticket extends \TODO\Entity\PostType
             array(
                 'hierarchical' => true
             )
+        );
+
+        //Add filter
+        new \TODO\Entity\Filter(
+            'todo-category',
+            'ticket'
         );
 
         //Return taxonomy slug
@@ -267,6 +269,12 @@ class Ticket extends \TODO\Entity\PostType
             remove_meta_box("todo-typediv", self::$postTypeSlug, 'side');
         });
 
+        //Add filter
+        new \TODO\Entity\Filter(
+            'todo-type',
+            'ticket'
+        );
+
         //Return taxonomy slug
         return $categories->slug;
     }
@@ -278,6 +286,6 @@ class Ticket extends \TODO\Entity\PostType
 
     public function taxonomyColor($termId, $taxonomySlug) : string
     {
-        return get_field('taxonomy_color', $taxonomySlug . '_' . $termId);
+        return (string) get_field('taxonomy_color', $taxonomySlug . '_' . $termId);
     }
 }

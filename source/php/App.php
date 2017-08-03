@@ -38,12 +38,4 @@ class App
         }
         wp_enqueue_style('todo-admin', TODO_URL . '/dist/css/todo.min.css');
     }
-
-    /**
-     * Enqueue required scripts
-     * @return void
-     */
-    public function enqueueScripts()
-    {
-    }
 }
