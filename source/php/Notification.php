@@ -24,6 +24,16 @@ class Notification
                 );
             }
         });
+
+        //Add table to ticket frontend
+        add_filter('the_content', function ($content) {
+
+            if (!is_admin() && is_single() && get_post_type()) {
+                return $content . $this->makeTicketTable(get_the_id(), false);
+            }
+
+            return $content;
+        });
     }
 
     public function showSendMailNotice()
@@ -136,18 +146,19 @@ class Notification
         return $template;
     }
 
-    private function makeTicketTable($ticketId, $return = "")
+    private function makeTicketTable($ticketId, $includePostData = true, $return = "")
     {
-        $metaData   = get_post_meta($ticketId);
-        $postData   = get_post($ticketId);
-        $postTerms  = get_object_taxonomies('ticket');
+        if (get_post_status($ticketId)) {
+            $metaData   = get_post_meta($ticketId);
+            $postData   = $includePostData ? get_post($ticketId) : null;
+            $postTerms  = get_object_taxonomies('ticket');
 
-        //Get data and push to html table
-        if (is_object($postData)) {
+            //Get data and push to html table
+
             $return .= '<table border="0" cellpadding="0" cellspacing="0"><tbody>';
 
             // Description
-            if (!empty($postData->post_content)) {
+            if (isset($postData->post_content) && !empty($postData->post_content)) {
                 $return .=
                 '<tr><td style="width: 30%;">
                     <strong>' . __("Ticket description", 'todo') . ':</strong> </td>
@@ -157,7 +168,7 @@ class Notification
             }
 
             // The date
-            if (!empty($postData->post_content)) {
+            if (isset($postData->post_date) && !empty($postData->post_date)) {
                 $return .=
                 '<tr><td style="width: 30%;">
                     <strong>' . __("Ticket issued at", 'todo') . ':</strong> </td>
