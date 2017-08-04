@@ -17,7 +17,11 @@ class Notification
         //Trigger email
         add_action('admin_notices', function () {
             if (isset($_GET['notification']) && $_GET['notification'] == 'true') {
-                $this->sendMail("Ticket title", __("New updates avabile."), $_GET['post']);
+                $this->sendMail(
+                    __("A ticket that you have reported has been updated"),
+                    __("This is an automated email on a ticket that you have issued. You cannot respond to this email. Below is a complete summary about the tickets current status."),
+                    $_GET['post']
+                );
             }
         });
     }
@@ -42,7 +46,7 @@ class Notification
 
             //Get details
             $lastNotified   = get_post_meta($postId, 'last_notification_email', true);
-            $ticketCustomer = get_post_meta($postId, 'ticket_customer', true);
+            $ticketCustomer = get_post_meta($postId, 'ticket_support_contact', true);
 
             //Create link
             $sendMailLink = admin_url("post.php" . add_query_arg(array(
@@ -70,22 +74,27 @@ class Notification
 
     private function sendMail($ticketTitle, $ticketContent, $ticketId)
     {
-        $customer = get_field('ticket_customer', $ticketId);
+        $customer = get_field('ticket_support_contact', $ticketId);
 
-        if (isset($customer->ID) && is_numeric($customer->ID)) {
+        if (isset($customer['ID']) && is_numeric($customer['ID'])) {
 
             //Gather user id details
             $customerContactDetails = array(
-                'userId' => $customerId,
-                'userEmail' => $customer->user_email,
-                'userName' => $customer->first_name . " " . $customer->last_name
+                'userId' => $customer['ID'],
+                'userEmail' => $customer['user_email'],
+                'userName' => $customer['user_firstname'] . " " . $customer['user_lastname']
             );
 
             //Create mail headers
-            $ticketMailHeaders = array('Content-Type: text/html; charset=UTF-8','From: Todo Tickets <todo@helsingborg.se>');
+            $ticketMailHeaders = array('Content-Type: text/html; charset=UTF-8','From: Todo Tickets <' . get_option('admin_email') . '>');
 
             //Send mail
-            wp_mail($customerContactDetails['userEmail'], $ticketTitle, $this->makeHtmlEmail($ticketContent, $ticketId), $ticketMailHeaders);
+            $mailSent = wp_mail($customerContactDetails['userEmail'], $ticketTitle, $this->makeHtmlEmail($ticketContent, $ticketId), $ticketMailHeaders);
+
+            //Note the time
+            if ($mailSent === true) {
+                update_post_meta($ticketId, 'last_notification_email', current_time('mysql'));
+            }
         } else {
             if (defined('WP_DEBUG') && WP_DEBUG) {
                 error_log("Todo WordPress plugin: User id is not specified. Cannot fetch customer.");
@@ -100,7 +109,7 @@ class Notification
         if (is_readable(TODO_PATH . '/source/html/emailTemplate.html')) {
             $template = file_get_contents(TODO_PATH . '/source/html/emailTemplate.html');
         } else {
-            $template = '{{emailcontent}}';
+            $template = '{{emailtitle}}{{emailcontent}}';
         }
 
         //Try to fetch template, if not readable. Fallback.
@@ -114,36 +123,80 @@ class Notification
         $ticketTable = $this->makeTicketTable($ticketId);
 
         //Glue
-        $content = $ticketContent . "<br/><br/>" .$ticketTable . "<br/><br/>" .$callToAction;
+        $content = "<small>" . $ticketContent . "</small>" . "<br/><br/>" .$ticketTable . "<br/><br/>" .$callToAction;
 
         //Populate
-        $template = str_replace("{{emailcontent}}", $ticketContent, $template);
+        $template = str_replace("{{emailtitle}}", __("Update regarding", 'todo') . ' "'. get_the_title($ticketId) . '" (#' . $ticketId . ")", $template);
+        $template = str_replace("{{emailcontent}}", $content, $template);
         $template = str_replace("{{emailcalltoactionlink}}", get_permalink($ticketId), $template);
-        $template = str_replace("{{emailcalltoactiontext}}", __("View ticket", 'todo'), $template);
+        $template = str_replace("{{emailcalltoactiontext}}", __("View ticket & comments", 'todo'), $template);
+        $template = str_replace("{{emailnorespond}}", __("You cannot respond to this email.", 'todo'), $template);
 
-        return $ticketContent;
+        return $template;
     }
 
     private function makeTicketTable($ticketId, $return = "")
     {
-        //Define what fields to get
-        $fields = array(
-            'ticket_priority' => __("Priority", 'todo'),
-            'ticket_support_contact' => __("Support contact", 'todo'),
-        );
+        $metaData   = get_post_meta($ticketId);
+        $postData   = get_post($ticketId);
+        $postTerms  = get_object_taxonomies('ticket');
 
         //Get data and push to html table
-        if (is_array($fields) && !empty($fields)) {
+        if (is_object($postData)) {
             $return .= '<table border="0" cellpadding="0" cellspacing="0"><tbody>';
 
-            foreach ($fields as $fieldKey => $fieldLabel) {
-                $fieldData = get_field($fieldKey, $ticketId, true);
+            // Description
+            if (!empty($postData->post_content)) {
+                $return .=
+                '<tr><td style="width: 30%;">
+                    <strong>' . __("Ticket description") . ':</strong> </td>
+                    <td>' . apply_filters('the_content', $postData->post_content) . '</td>
+                </tr>
+                ';
+            }
 
-                if (is_array($fieldData)) {
-                    $fieldData = implode(", ", $fieldData);
+            // The date
+            if (!empty($postData->post_content)) {
+                $return .=
+                '<tr><td style="width: 30%;">
+                    <strong>' . __("Ticket issued at") . ':</strong> </td>
+                    <td>' . $postData->post_date . '</td>
+                </tr>
+                ';
+            }
+
+            // Contact
+            if (get_field('ticket_support_contact')) {
+                $return .=
+                '<tr><td style="width: 30%;">
+                    <strong>' . __("Support contact") . ':</strong> </td>
+                    <td>' . get_field('ticket_support_contact')['user_firstname'] . " " . get_field('ticket_support_contact')['user_lastname'] . ' (' . get_field('ticket_support_contact')['user_email'] . ')</td>
+                </tr>
+                ';
+            }
+
+            //Terms
+            if (is_array($postTerms) && !empty($postTerms)) {
+                foreach ($postTerms as $termKey) {
+                    $termData = get_the_terms($ticketId, $termKey);
+                    $taxonomyData = get_taxonomy($termKey);
+
+                    if (!empty($termData)) {
+                        $return .= '<tr>';
+                        $return .= '<td style="width: 30%;"><strong>' . $taxonomyData->label . ':</strong></td>';
+                        $return .= '<td>';
+
+                        foreach ((array)$termData as $termKey => $termItem) {
+                            if ($termKey > 0) {
+                                $return .= ', ';
+                            }
+                            $return .= isset($termItem->name) ? $termItem->name : '-';
+                        }
+
+                        $return .= '</td>';
+                        $return .= '</tr>';
+                    }
                 }
-
-                $return .= '<tr><td><strong>' .$fieldLabel. ':</strong> </td><td>' .$fieldData. '</td></tr>';
             }
 
             $return .= '</tbody></table>';

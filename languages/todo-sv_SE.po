@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Todo\n"
-"POT-Creation-Date: 2017-08-03 13:55+0200\n"
-"PO-Revision-Date: 2017-08-03 14:01+0200\n"
+"POT-Creation-Date: 2017-08-04 08:49+0200\n"
+"PO-Revision-Date: 2017-08-04 08:49+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: sv_SE\n"
@@ -58,7 +58,7 @@ msgstr ""
 "ärendets status."
 
 #: source/php/AcfFields/php/ticketContact.php:27
-#: source/php/Notification.php:132 source/php/Ticket.php:128
+#: source/php/Notification.php:167 source/php/Ticket.php:128
 msgid "Support contact"
 msgstr "Kontaktperson - Support"
 
@@ -83,8 +83,7 @@ msgstr ""
 "Klicka på knappen nedan för att uppdatera kunden i det här ärendet. Kunden "
 "får en länk till ärendet, och en summering direkt i sin inkorg."
 
-#: source/php/AcfFields/php/ticketPriority.php:6
-#: source/php/Notification.php:131 source/php/Ticket.php:59
+#: source/php/AcfFields/php/ticketPriority.php:6 source/php/Ticket.php:59
 #: source/php/Ticket.php:166
 msgid "Priority"
 msgstr "Prioritet"
@@ -179,37 +178,62 @@ msgstr "Lägg till nytt %s"
 msgid "New %s Name"
 msgstr "Ny %s namn"
 
-#: source/php/Notification.php:20
-msgid "New updates avabile."
-msgstr "Nya uppdateringar tillgängliga"
+#: source/php/Notification.php:21
+msgid "A ticket that you have reported has been updated"
+msgstr "Ett ärende som du har rapporterat har uppdaterats med ny information"
 
-#: source/php/Notification.php:30
+#: source/php/Notification.php:22
+msgid ""
+"This is an automated email on a ticket that you have issued. You cannot "
+"respond to this email. Below is a complete summary about the tickets current "
+"status."
+msgstr ""
+"Det här är ett automatiskt epostmeddelande som du inte kan svara på. Nedan "
+"finner du en komplett summering av ärendets status."
+
+#: source/php/Notification.php:34
 msgid ""
 "Status update on this ticket has been sent to the customers registered email "
 "adress."
 msgstr ""
 "Statusuppdateringen har skickats till kundens registrerade epostadress."
 
-#: source/php/Notification.php:56
+#: source/php/Notification.php:60
 msgid "Send email"
 msgstr "Skicka meddelande"
 
-#: source/php/Notification.php:59
+#: source/php/Notification.php:63
 msgid "Last noficiation sent at: "
 msgstr "Senaste notifiering skickades"
 
-#: source/php/Notification.php:62
+#: source/php/Notification.php:66
 msgid "Please select a customer to enable this feature."
 msgstr "Vänligen välj en kund i listan för att aktivera den här funktionen."
 
-#: source/php/Notification.php:65
+#: source/php/Notification.php:69
 msgid "Please save this ticket before trying to send the user a email."
 msgstr ""
 "Vänligen spara det här ärendet innan du skickar ett mail med ny status."
 
-#: source/php/Notification.php:122
-msgid "View ticket"
-msgstr "Visa ärende på webben"
+#: source/php/Notification.php:124
+msgid "Update regarding"
+msgstr "Uppdatering av"
+
+#: source/php/Notification.php:127
+msgid "View ticket & comments"
+msgstr "Visa ärende & kommentarer"
+
+#: source/php/Notification.php:128
+msgid "You cannot respond to this email."
+msgstr "Du kan inte svara på detta epostmeddelande."
+
+#: source/php/Notification.php:147
+msgid "Ticket description"
+msgstr "Ärendebeskrivning"
+
+#: source/php/Notification.php:157
+msgid "Ticket issued at"
+msgstr "Ärendet öppnades"
 
 #: source/php/Ticket.php:34
 msgctxt "Post type plural"
@@ -313,6 +337,12 @@ msgstr ""
 #. Author URI of the plugin/theme
 msgid "https://github.com/sebastianthulin"
 msgstr ""
+
+#~ msgid "View ticket"
+#~ msgstr "Visa ärende på webben"
+
+#~ msgid "New updates avabile."
+#~ msgstr "Nya uppdateringar tillgängliga"
 
 #~ msgid "To do / Pending"
 #~ msgstr "Att göra"
