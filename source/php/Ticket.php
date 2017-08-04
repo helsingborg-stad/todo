@@ -266,7 +266,7 @@ class Ticket extends \TODO\Entity\PostType
 
         //Remove deafult UI
         add_action('admin_menu', function () {
-            remove_meta_box("todo-typediv", self::$postTypeSlug, 'side');
+            remove_meta_box("tagsdiv-todo-type", self::$postTypeSlug, 'side');
         });
 
         //Add filter
