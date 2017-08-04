@@ -19,9 +19,24 @@ class Comments
             $this->currentUser = wp_get_current_user();
         });
 
+        //Force open comments
+        add_filter('comments_open', array($this, 'forceOpenComments'), 15, 2);
+
         //Acf hooks
         add_action('acf/render_field/type=repeater', array($this, 'listComments'), 15, 1);
         add_action('acf/save_post', array($this, 'addComment'), 5, 1);
+    }
+
+     /**
+     * Force open comments filed on tickets
+     * @return void
+     */
+    public function forceOpenComments($open, $postId)
+    {
+        if (get_post_type($postId)) {
+            return 1;
+        }
+        return $open;
     }
 
     /**
