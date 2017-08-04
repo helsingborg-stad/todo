@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Todo\n"
 "POT-Creation-Date: 2017-08-04 08:49+0200\n"
-"PO-Revision-Date: 2017-08-04 08:49+0200\n"
+"PO-Revision-Date: 2017-08-04 09:59+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: sv_SE\n"
@@ -47,7 +47,7 @@ msgstr "Kontaktinformation"
 
 #: source/php/AcfFields/php/ticketContact.php:10
 msgid "Reporting customer"
-msgstr "Kundkontakt"
+msgstr "Inrapporterat av"
 
 #: source/php/AcfFields/php/ticketContact.php:13
 msgid ""
@@ -60,7 +60,7 @@ msgstr ""
 #: source/php/AcfFields/php/ticketContact.php:27
 #: source/php/Notification.php:167 source/php/Ticket.php:128
 msgid "Support contact"
-msgstr "Kontaktperson - Support"
+msgstr "Supportkontakt"
 
 #: source/php/AcfFields/php/ticketContact.php:30
 msgid "The person who are in chare of getting this task done at the moment."

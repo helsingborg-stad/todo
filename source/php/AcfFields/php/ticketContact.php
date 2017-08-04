@@ -35,11 +35,7 @@
                 'class' => '',
                 'id' => '',
             ),
-            'role' => array(
-                0 => 'administrator',
-                1 => 'editor',
-                2 => 'author',
-            ),
+            'role' => '',
             'allow_null' => 1,
             'multiple' => 0,
         ),

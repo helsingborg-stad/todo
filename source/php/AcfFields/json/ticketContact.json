@@ -32,11 +32,7 @@
                 "class": "",
                 "id": ""
             },
-            "role": [
-                "administrator",
-                "editor",
-                "author"
-            ],
+            "role": "",
             "allow_null": 1,
             "multiple": 0
         }
