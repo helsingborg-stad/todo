@@ -126,6 +126,7 @@ class Notification
         $content = "<small>" . $ticketContent . "</small>" . "<br/><br/>" .$ticketTable . "<br/><br/>" .$callToAction;
 
         //Populate
+        $template = str_replace("{{emailpreheader}}", __("Update regarding", 'todo') . ' "'. get_the_title($ticketId) . '" (#' . $ticketId . ")", $template);
         $template = str_replace("{{emailtitle}}", __("Update regarding", 'todo') . ' "'. get_the_title($ticketId) . '" (#' . $ticketId . ")", $template);
         $template = str_replace("{{emailcontent}}", $content, $template);
         $template = str_replace("{{emailcalltoactionlink}}", get_permalink($ticketId), $template);
