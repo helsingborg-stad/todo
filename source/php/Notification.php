@@ -46,7 +46,7 @@ class Notification
 
             //Get details
             $lastNotified   = get_post_meta($postId, 'last_notification_email', true);
-            $ticketCustomer = get_post_meta($postId, 'ticket_support_contact', true);
+            $ticketCustomer = get_post_meta($postId, 'ticket_customer', true);
 
             //Create link
             $sendMailLink = admin_url("post.php" . add_query_arg(array(
@@ -74,7 +74,7 @@ class Notification
 
     private function sendMail($ticketTitle, $ticketContent, $ticketId)
     {
-        $customer = get_field('ticket_support_contact', $ticketId);
+        $customer = get_field('ticket_customer', $ticketId);
 
         if (isset($customer['ID']) && is_numeric($customer['ID'])) {
 
