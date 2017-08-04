@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Todo\n"
-"POT-Creation-Date: 2017-08-04 08:49+0200\n"
-"PO-Revision-Date: 2017-08-04 09:59+0200\n"
+"POT-Creation-Date: 2017-08-04 10:22+0200\n"
+"PO-Revision-Date: 2017-08-04 10:22+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: sv_SE\n"
@@ -19,6 +19,15 @@ msgstr ""
 "_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.js\n"
+
+#: source/php/AcfFields/php/ticketColors.php:6
+#: source/php/AcfFields/php/ticketColors.php:10
+msgid "Taxonomy color"
+msgstr "Färg på taxonomi"
+
+#: source/php/AcfFields/php/ticketColors.php:13
+msgid "Select a color for this taxonomy to make it stand out."
+msgstr "Välj en färg för att tydligöra gränssnittet."
 
 #: source/php/AcfFields/php/ticketComment.php:6
 msgid "Ticket comments"
@@ -58,7 +67,7 @@ msgstr ""
 "ärendets status."
 
 #: source/php/AcfFields/php/ticketContact.php:27
-#: source/php/Notification.php:167 source/php/Ticket.php:128
+#: source/php/Notification.php:173 source/php/Ticket.php:128
 msgid "Support contact"
 msgstr "Supportkontakt"
 
@@ -215,23 +224,23 @@ msgid "Please save this ticket before trying to send the user a email."
 msgstr ""
 "Vänligen spara det här ärendet innan du skickar ett mail med ny status."
 
-#: source/php/Notification.php:124
+#: source/php/Notification.php:129 source/php/Notification.php:130
 msgid "Update regarding"
 msgstr "Uppdatering av"
 
-#: source/php/Notification.php:127
+#: source/php/Notification.php:133
 msgid "View ticket & comments"
 msgstr "Visa ärende & kommentarer"
 
-#: source/php/Notification.php:128
+#: source/php/Notification.php:134
 msgid "You cannot respond to this email."
 msgstr "Du kan inte svara på detta epostmeddelande."
 
-#: source/php/Notification.php:147
+#: source/php/Notification.php:153
 msgid "Ticket description"
 msgstr "Ärendebeskrivning"
 
-#: source/php/Notification.php:157
+#: source/php/Notification.php:163
 msgid "Ticket issued at"
 msgstr "Ärendet öppnades"
 

@@ -18,8 +18,8 @@ class Notification
         add_action('admin_notices', function () {
             if (isset($_GET['notification']) && $_GET['notification'] == 'true') {
                 $this->sendMail(
-                    __("A ticket that you have reported has been updated"),
-                    __("This is an automated email on a ticket that you have issued. You cannot respond to this email. Below is a complete summary about the tickets current status."),
+                    __("A ticket that you have reported has been updated", 'todo'),
+                    __("This is an automated email on a ticket that you have issued. You cannot respond to this email. Below is a complete summary about the tickets current status.", 'todo'),
                     $_GET['post']
                 );
             }
@@ -150,7 +150,7 @@ class Notification
             if (!empty($postData->post_content)) {
                 $return .=
                 '<tr><td style="width: 30%;">
-                    <strong>' . __("Ticket description") . ':</strong> </td>
+                    <strong>' . __("Ticket description", 'todo') . ':</strong> </td>
                     <td>' . apply_filters('the_content', $postData->post_content) . '</td>
                 </tr>
                 ';
@@ -160,7 +160,7 @@ class Notification
             if (!empty($postData->post_content)) {
                 $return .=
                 '<tr><td style="width: 30%;">
-                    <strong>' . __("Ticket issued at") . ':</strong> </td>
+                    <strong>' . __("Ticket issued at", 'todo') . ':</strong> </td>
                     <td>' . $postData->post_date . '</td>
                 </tr>
                 ';
@@ -170,7 +170,7 @@ class Notification
             if (get_field('ticket_support_contact')) {
                 $return .=
                 '<tr><td style="width: 30%;">
-                    <strong>' . __("Support contact") . ':</strong> </td>
+                    <strong>' . __("Support contact", 'todo') . ':</strong> </td>
                     <td>' . get_field('ticket_support_contact')['user_firstname'] . " " . get_field('ticket_support_contact')['user_lastname'] . ' (' . get_field('ticket_support_contact')['user_email'] . ')</td>
                 </tr>
                 ';
