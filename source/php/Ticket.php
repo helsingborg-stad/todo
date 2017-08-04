@@ -49,7 +49,7 @@ class Ticket extends \TODO\Entity\PostType
                 'hierarchical'          =>  false,
                 'exclude_from_search'   =>  false,
                 'taxonomies'            =>  array(),
-                'supports'              =>  array('title', 'revisions', 'editor')
+                'supports'              =>  array('title', 'revisions', 'editor','comments')
             )
         );
 
@@ -260,7 +260,7 @@ class Ticket extends \TODO\Entity\PostType
             'todo-type',
             array('ticket'),
             array(
-                'hierarchical' => true
+                'hierarchical' => false
             )
         );
 
