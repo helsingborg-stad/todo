@@ -28,7 +28,7 @@ class Notification
         //Add table to ticket frontend
         add_filter('the_content', function ($content) {
 
-            if (!is_admin() && is_single() && get_post_type()) {
+            if (!is_admin() && is_single() && get_post_type() == "ticket") {
                 return $content . $this->makeTicketTable(get_the_id(), false);
             }
 

@@ -25,7 +25,34 @@ class Comments
         //Acf hooks
         add_action('acf/render_field/type=repeater', array($this, 'listComments'), 15, 1);
         add_action('acf/save_post', array($this, 'addComment'), 5, 1);
+
+        //Append comments to frontend
+        add_filter('the_comments', array($this, 'appendCommentFiles'), 10, 2);
     }
+
+     /**
+     * Append files to frontend comments
+     * @return void
+     */
+    public function appendCommentFiles($comments, $query = "")
+    {
+        if (is_array($comments) && !empty($comments)) {
+            foreach ($comments as $comment) {
+                $filesMeta = get_comment_meta($comment->comment_ID, 'ticket_comment_files', true);
+
+                if (is_array($filesMeta) && !empty($filesMeta)) {
+                    $comment->comment_content .= '<ul class="files">';
+                    foreach ($filesMeta as $fileKey => $file) {
+                        $comment->comment_content .= '<li class="inline-block" ><a class="link-item link-item-light" target="_blank" href="' . wp_get_attachment_url($file) . '">' . get_the_title($file) . '</a></li>';
+                    }
+                    $comment->comment_content .= '</ul>';
+                }
+            }
+        }
+
+        return $comments;
+    }
+
 
      /**
      * Force open comments filed on tickets
@@ -57,9 +84,6 @@ class Comments
             if (is_array($previusComments) && !empty($previusComments)) {
                 foreach (array_reverse($previusComments) as $comment) {
 
-                    //Gather meta
-                    $filesMeta = get_comment_meta($comment->comment_ID, 'ticket_comment_files', true);
-
                     //Start
                     $output .= '<table class="ticket-comments table widefat fixed">';
 
@@ -81,6 +105,8 @@ class Comments
                     $output .= '</tr>';
 
                     //Files
+                    $filesMeta = get_comment_meta($comment->comment_ID, 'ticket_comment_files', true);
+
                     if (is_Array($filesMeta) && !empty($filesMeta)) {
                         $output .= '<tr>';
                         $output .= '<td colspan="2">';
