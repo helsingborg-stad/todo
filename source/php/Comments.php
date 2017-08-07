@@ -36,16 +36,18 @@ class Comments
      */
     public function appendCommentFiles($comments, $query = "")
     {
-        if (is_array($comments) && !empty($comments)) {
-            foreach ($comments as $comment) {
-                $filesMeta = get_comment_meta($comment->comment_ID, 'ticket_comment_files', true);
+        if (!is_admin() && is_single() && get_post_type() == "ticket") {
+            if (is_array($comments) && !empty($comments)) {
+                foreach ($comments as $comment) {
+                    $filesMeta = get_comment_meta($comment->comment_ID, 'ticket_comment_files', true);
 
-                if (is_array($filesMeta) && !empty($filesMeta)) {
-                    $comment->comment_content .= '<ul class="files">';
-                    foreach ($filesMeta as $fileKey => $file) {
-                        $comment->comment_content .= '<li class="inline-block" ><a class="link-item link-item-light" target="_blank" href="' . wp_get_attachment_url($file) . '">' . get_the_title($file) . '</a></li>';
+                    if (is_array($filesMeta) && !empty($filesMeta)) {
+                        $comment->comment_content .= '<ul class="files">';
+                        foreach ($filesMeta as $fileKey => $file) {
+                            $comment->comment_content .= '<li class="inline-block" ><a class="link-item link-item-light" target="_blank" href="' . wp_get_attachment_url($file) . '">' . get_the_title($file) . '</a></li>';
+                        }
+                        $comment->comment_content .= '</ul>';
                     }
-                    $comment->comment_content .= '</ul>';
                 }
             }
         }
@@ -60,8 +62,10 @@ class Comments
      */
     public function forceOpenComments($open, $postId)
     {
-        if (get_post_type($postId)) {
-            return 1;
+        if (!is_admin() && is_single() && get_post_type() == "ticket") {
+            if (get_post_type($postId)) {
+                return 1;
+            }
         }
         return $open;
     }
