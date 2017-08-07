@@ -44,7 +44,9 @@ class Comments
                     if (is_array($filesMeta) && !empty($filesMeta)) {
                         $comment->comment_content .= '<ul class="files">';
                         foreach ($filesMeta as $fileKey => $file) {
-                            $comment->comment_content .= '<li class="inline-block" ><a class="link-item link-item-light" target="_blank" href="' . wp_get_attachment_url($file) . '">' . get_the_title($file) . '</a></li>';
+                            if (!empty(wp_get_attachment_url($file))) {
+                                $comment->comment_content .= '<li class="inline-block" ><a class="link-item link-item-light" target="_blank" href="' . wp_get_attachment_url($file) . '">' . get_the_title($file) . '</a></li>';
+                            }
                         }
                         $comment->comment_content .= '</ul>';
                     }
