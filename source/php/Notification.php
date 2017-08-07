@@ -70,7 +70,7 @@ class Notification
                 $field['message'] .= '<a href="' . $sendMailLink . '" class="button button-primary button-large" style="width: 100%; text-align: center; margin-top: 10px;">' . __("Send email", 'todo') . '</a>';
 
                 if ($lastNotified) {
-                    $field['message'] .= '<p class="description">' . __("Last noficiation sent at: ", 'todo'). $lastNotified . '</p>';
+                    $field['message'] .= '<p class="description">' . __("Last noficiation sent at: ", 'todo') . " " . $lastNotified . '</p>';
                 }
             } else {
                 $field['message'] = __("Please select a customer to enable this feature.", 'todo');
