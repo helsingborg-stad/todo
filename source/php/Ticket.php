@@ -117,8 +117,17 @@ class Ticket extends \TODO\Entity\PostType
             __('Customer', 'todo'),
             true,
             function ($column, $postId) {
-                $customer = get_field('ticket_customer', $postId, true);
-                echo !empty($customer) ? $customer['user_firstname'] . " " . $customer['user_lastname'] : __('No customer', 'todo');
+                $customers = get_field('ticket_customer', $postId, true);
+                if (isset($customers['ID']) && is_numeric($customers['ID'])) {
+                    $customers = array($customers);
+                }
+                if (!empty($customers)) {
+                    echo implode(', ', array_map(function ($customer) {
+                      return $customer['user_firstname'] . ' ' . $customer['user_lastname'];
+                    }, $customers));
+                } else {
+                    _e('No customer', 'todo');
+                }
             }
         );
 
