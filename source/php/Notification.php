@@ -84,30 +84,38 @@ class Notification
 
     private function sendMail($ticketTitle, $ticketContent, $ticketId)
     {
-        $customer = get_field('ticket_customer', $ticketId);
+        $customers = get_field('ticket_customer', $ticketId);
 
-        if (isset($customer['ID']) && is_numeric($customer['ID'])) {
+        // Move single customer array to new array
+        if (isset($customers['ID']) && is_numeric($customers['ID'])) {
+            $customers = array($customers);
+        }
 
-            //Gather user id details
-            $customerContactDetails = array(
-                'userId' => $customer['ID'],
-                'userEmail' => $customer['user_email'],
-                'userName' => $customer['user_firstname'] . " " . $customer['user_lastname']
-            );
+        if (is_array($customers) && !empty($customers)) {
+            foreach ($customers as $customer) {
+                if (isset($customer['ID']) && is_numeric($customer['ID'])) {
+                    //Gather user id details
+                    $customerContactDetails = array(
+                        'userId' => $customer['ID'],
+                        'userEmail' => $customer['user_email'],
+                        'userName' => $customer['user_firstname'] . " " . $customer['user_lastname']
+                    );
 
-            //Create mail headers
-            $ticketMailHeaders = array('Content-Type: text/html; charset=UTF-8','From: Todo Tickets <' . get_option('admin_email') . '>');
+                    //Create mail headers
+                    $ticketMailHeaders = array('Content-Type: text/html; charset=UTF-8','From: Todo Tickets <' . get_option('admin_email') . '>');
 
-            //Send mail
-            $mailSent = wp_mail($customerContactDetails['userEmail'], $ticketTitle, $this->makeHtmlEmail($ticketContent, $ticketId), $ticketMailHeaders);
+                    //Send mail
+                    $mailSent = wp_mail($customerContactDetails['userEmail'], $ticketTitle, $this->makeHtmlEmail($ticketContent, $ticketId), $ticketMailHeaders);
 
-            //Note the time
-            if ($mailSent === true) {
-                update_post_meta($ticketId, 'last_notification_email', current_time('mysql'));
-            }
-        } else {
-            if (defined('WP_DEBUG') && WP_DEBUG) {
-                error_log("Todo WordPress plugin: User id is not specified. Cannot fetch customer.");
+                    //Note the time
+                    if ($mailSent === true) {
+                        update_post_meta($ticketId, 'last_notification_email', current_time('mysql'));
+                    }
+                } else {
+                    if (defined('WP_DEBUG') && WP_DEBUG) {
+                        error_log("Todo WordPress plugin: User id is not specified. Cannot fetch customer.");
+                    }
+                }
             }
         }
     }

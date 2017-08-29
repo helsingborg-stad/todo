@@ -20,7 +20,7 @@
             ),
             'role' => '',
             'allow_null' => 1,
-            'multiple' => 0,
+            'multiple' => 1,
         ),
         1 => array(
             'key' => 'field_598033942a343',
