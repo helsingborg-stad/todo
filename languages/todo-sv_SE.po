@@ -1,15 +1,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Todo\n"
-"POT-Creation-Date: 2017-08-04 10:27+0200\n"
-"PO-Revision-Date: 2017-08-04 10:27+0200\n"
+"POT-Creation-Date: 2017-09-21 11:35+0200\n"
+"PO-Revision-Date: 2017-09-21 11:36+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: sv_SE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.8.12\n"
+"X-Generator: Poedit 2.0.3\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-WPHeader: todo.php\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -67,7 +67,7 @@ msgstr ""
 "ärendets status."
 
 #: source/php/AcfFields/php/ticketContact.php:27
-#: source/php/Notification.php:173 source/php/Ticket.php:128
+#: source/php/Notification.php:192 source/php/Ticket.php:139
 msgid "Support contact"
 msgstr "Supportkontakt"
 
@@ -92,8 +92,8 @@ msgstr ""
 "Klicka på knappen nedan för att uppdatera kunden i det här ärendet. Kunden "
 "får en länk till ärendet, och en summering direkt i sin inkorg."
 
-#: source/php/AcfFields/php/ticketPriority.php:6 source/php/Ticket.php:59
-#: source/php/Ticket.php:166
+#: source/php/AcfFields/php/ticketPriority.php:6 source/php/Ticket.php:61
+#: source/php/Ticket.php:178
 msgid "Priority"
 msgstr "Prioritet"
 
@@ -105,7 +105,7 @@ msgstr "Prioritetsnivå"
 msgid "Select a priority level for this ticket."
 msgstr "Välj en prioritetsnivå för detta ärende"
 
-#: source/php/AcfFields/php/ticketStatus.php:6 source/php/Ticket.php:198
+#: source/php/AcfFields/php/ticketStatus.php:6 source/php/Ticket.php:210
 msgid "Status"
 msgstr "Status"
 
@@ -113,8 +113,8 @@ msgstr "Status"
 msgid "Ticket status"
 msgstr "Ärendestatus"
 
-#: source/php/AcfFields/php/ticketType.php:6 source/php/Ticket.php:98
-#: source/php/Ticket.php:258
+#: source/php/AcfFields/php/ticketType.php:6 source/php/Ticket.php:100
+#: source/php/Ticket.php:270
 msgid "Type"
 msgstr "Typ"
 
@@ -200,61 +200,61 @@ msgstr ""
 "Det här är ett automatiskt epostmeddelande som du inte kan svara på. Nedan "
 "finner du en komplett summering av ärendets status."
 
-#: source/php/Notification.php:34
+#: source/php/Notification.php:44
 msgid ""
 "Status update on this ticket has been sent to the customers registered email "
 "adress."
 msgstr ""
 "Statusuppdateringen har skickats till kundens registrerade epostadress."
 
-#: source/php/Notification.php:60
+#: source/php/Notification.php:70
 msgid "Send email"
 msgstr "Skicka meddelande"
 
-#: source/php/Notification.php:63
+#: source/php/Notification.php:73
 msgid "Last noficiation sent at: "
 msgstr "Senaste notifiering skickades"
 
-#: source/php/Notification.php:66
+#: source/php/Notification.php:76
 msgid "Please select a customer to enable this feature."
 msgstr "Vänligen välj en kund i listan för att aktivera den här funktionen."
 
-#: source/php/Notification.php:69
+#: source/php/Notification.php:79
 msgid "Please save this ticket before trying to send the user a email."
 msgstr ""
 "Vänligen spara det här ärendet innan du skickar ett mail med ny status."
 
-#: source/php/Notification.php:129 source/php/Notification.php:130
+#: source/php/Notification.php:147 source/php/Notification.php:148
 msgid "Update regarding"
 msgstr "Uppdatering av"
 
-#: source/php/Notification.php:133
+#: source/php/Notification.php:151
 msgid "View ticket & comments"
 msgstr "Visa ärende & kommentarer"
 
-#: source/php/Notification.php:134
+#: source/php/Notification.php:152
 msgid "You cannot respond to this email."
 msgstr "Du kan inte svara på detta epostmeddelande."
 
-#: source/php/Notification.php:153
+#: source/php/Notification.php:172
 msgid "Ticket description"
 msgstr "Ärendebeskrivning"
 
-#: source/php/Notification.php:163
+#: source/php/Notification.php:182
 msgid "Ticket issued at"
 msgstr "Ärendet öppnades"
 
-#: source/php/Ticket.php:34
+#: source/php/Ticket.php:36
 msgctxt "Post type plural"
 msgid "Tickets"
 msgstr "Ärenden"
 
-#: source/php/Ticket.php:35
+#: source/php/Ticket.php:37
 msgctxt "Post type singular"
 msgid "Ticket"
 msgstr "Ärende"
 
-#: source/php/Ticket.php:38
+#: source/php/Ticket.php:40
 msgid ""
 "Todo support tickets makes it easier to know what to do and improves "
 "customer communication."
@@ -262,61 +262,69 @@ msgstr ""
 "Todo support gör det tydligt vad som finns att göra, och förenklar "
 "kommunkationen med dina kunder."
 
-#: source/php/Ticket.php:46
+#: source/php/Ticket.php:48
 msgid "ticket"
 msgstr "arende"
 
-#: source/php/Ticket.php:66
+#: source/php/Ticket.php:68
 msgid "Unprioritized"
 msgstr "Oprioriterad"
 
-#: source/php/Ticket.php:79 source/php/Ticket.php:231
+#: source/php/Ticket.php:81 source/php/Ticket.php:241
 msgid "Categories"
 msgstr "Kategorier / Produkter"
 
-#: source/php/Ticket.php:86
+#: source/php/Ticket.php:88
 msgid "Uncategorized"
 msgstr "Okategoriserad"
 
-#: source/php/Ticket.php:105
+#: source/php/Ticket.php:107
 msgid "Undefined"
 msgstr "Odefinierad"
 
-#: source/php/Ticket.php:117
+#: source/php/Ticket.php:119
 msgid "Customer"
 msgstr "Kundkontakt"
 
-#: source/php/Ticket.php:121
+#: source/php/Ticket.php:131
 msgid "No customer"
 msgstr "Ingen kundkontakt"
 
-#: source/php/Ticket.php:132
+#: source/php/Ticket.php:143
 msgid "No contact"
 msgstr "Ingen kontakt"
 
-#: source/php/Ticket.php:139
+#: source/php/Ticket.php:150
 msgid "Task status"
 msgstr "Ärendets status"
 
-#: source/php/Ticket.php:146
+#: source/php/Ticket.php:157
 msgid "Pending"
 msgstr "Vilande"
 
-#: source/php/Ticket.php:167
+#: source/php/Ticket.php:177
 msgid "Priorities"
-msgstr "Prioritet"
+msgstr "Prioriteter"
 
-#: source/php/Ticket.php:199
+#: source/php/Ticket.php:209
 msgid "Statuses"
 msgstr "Status"
 
-#: source/php/Ticket.php:230
+#: source/php/Ticket.php:242
 msgid "Category"
 msgstr "Kategori / Produkt"
 
-#: source/php/Ticket.php:259
+#: source/php/Ticket.php:269
 msgid "Types"
 msgstr "Typer"
+
+#: source/php/Ticket.php:301
+msgid "Sprints"
+msgstr "Sprintar"
+
+#: source/php/Ticket.php:302
+msgid "Sprint"
+msgstr "Sprint"
 
 #: vendor/helsingborg-stad/acf-export-manager/src/AcfExportManager.php:362
 msgid "Export with AcfExportManager"
