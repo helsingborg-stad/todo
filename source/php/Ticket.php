@@ -9,6 +9,7 @@ class Ticket extends \TODO\Entity\PostType
     public static $typeTaxonomySlug;
     public static $priorityTaxonomySlug;
     public static $statusTaxonomySlug;
+    public static $sprintTaxonomySlug;
 
     public function __construct()
     {
@@ -21,7 +22,7 @@ class Ticket extends \TODO\Entity\PostType
         self::$typeTaxonomySlug = $this->taxonomyType();
         self::$priorityTaxonomySlug = $this->taxonomyPriority();
         self::$statusTaxonomySlug = $this->taxonomyStatus();
-        self::$typeTaxonomySlug = $this->taxonomySprint();
+        self::$sprintTaxonomySlug = $this->taxonomySprint();
     }
 
     /**
@@ -308,7 +309,7 @@ class Ticket extends \TODO\Entity\PostType
 
         //Add filter
         new \TODO\Entity\Filter(
-            'todo-category',
+            'todo-sprint',
             'ticket'
         );
 
