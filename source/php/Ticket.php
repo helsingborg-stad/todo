@@ -174,8 +174,8 @@ class Ticket extends \TODO\Entity\PostType
     {
         //Register new taxonomy
         $categories = new \TODO\Entity\Taxonomy(
-            __('Priority', 'todo'),
             __('Priorities', 'todo'),
+            __('Priority', 'todo'),
             'todo-priority',
             array('ticket'),
             array(
@@ -206,8 +206,8 @@ class Ticket extends \TODO\Entity\PostType
     {
         //Register new taxonomy
         $categories = new \TODO\Entity\Taxonomy(
-            __('Status', 'todo'),
             __('Statuses', 'todo'),
+            __('Status', 'todo'),
             'todo-status',
             array('ticket'),
             array(
@@ -238,8 +238,8 @@ class Ticket extends \TODO\Entity\PostType
     {
         //Register new taxonomy
         $categories = new \TODO\Entity\Taxonomy(
-            __('Category', 'todo'),
             __('Categories', 'todo'),
+            __('Category', 'todo'),
             'todo-category',
             array('ticket'),
             array(
@@ -257,7 +257,6 @@ class Ticket extends \TODO\Entity\PostType
         return $categories->slug;
     }
 
-
     /**
      * Create type taxonomy
      * @return string
@@ -266,8 +265,8 @@ class Ticket extends \TODO\Entity\PostType
     {
         //Register new taxonomy
         $categories = new \TODO\Entity\Taxonomy(
-            __('Type', 'todo'),
             __('Types', 'todo'),
+            __('Type', 'todo'),
             'todo-type',
             array('ticket'),
             array(
@@ -298,7 +297,7 @@ class Ticket extends \TODO\Entity\PostType
     {
         //Register new taxonomy
         $categories = new \TODO\Entity\Taxonomy(
-            __('Sprint', 'todo'),
+            __('Sprints', 'todo'),
             __('Sprint', 'todo'),
             'todo-sprint',
             array('ticket'),

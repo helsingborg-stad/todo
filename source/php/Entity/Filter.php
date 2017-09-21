@@ -23,7 +23,7 @@ class Filter
 
         if ($typenow == $this->postType) {
             wp_dropdown_categories(array(
-                'show_option_all' => __("Show All") . " " . get_taxonomy($this->taxonomySlug)->label,
+                'show_option_all' => __("Show All", "todo") . " " . get_taxonomy($this->taxonomySlug)->label,
                 'taxonomy'        => $this->taxonomySlug,
                 'name'            => $this->taxonomySlug,
                 'orderby'         => 'name',
@@ -33,6 +33,7 @@ class Filter
             ));
         };
     }
+
     /**
      * Filter posts by taxonomy in admin
      * @author  Mike Hemberger
