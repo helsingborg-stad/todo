@@ -21,6 +21,7 @@ class Ticket extends \TODO\Entity\PostType
         self::$typeTaxonomySlug = $this->taxonomyType();
         self::$priorityTaxonomySlug = $this->taxonomyPriority();
         self::$statusTaxonomySlug = $this->taxonomyStatus();
+        self::$typeTaxonomySlug = $this->taxonomySprint();
     }
 
     /**
@@ -281,6 +282,33 @@ class Ticket extends \TODO\Entity\PostType
         //Add filter
         new \TODO\Entity\Filter(
             'todo-type',
+            'ticket'
+        );
+
+        //Return taxonomy slug
+        return $categories->slug;
+    }
+
+    /**
+     * Create category taxonomy
+     * @return string
+     */
+    public function taxonomySprint() : string
+    {
+        //Register new taxonomy
+        $categories = new \TODO\Entity\Taxonomy(
+            __('Sprint', 'todo'),
+            __('Sprint', 'todo'),
+            'todo-sprint',
+            array('ticket'),
+            array(
+                'hierarchical' => true
+            )
+        );
+
+        //Add filter
+        new \TODO\Entity\Filter(
+            'todo-category',
             'ticket'
         );
 
