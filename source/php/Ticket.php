@@ -48,10 +48,10 @@ class Ticket extends \TODO\Entity\PostType
                     'slug'       =>   __('ticket', 'todo'),
                     'with_front' =>   false
                 ),
-                'hierarchical'          =>  false,
+                'hierarchical'          =>  true,
                 'exclude_from_search'   =>  false,
                 'taxonomies'            =>  array(),
-                'supports'              =>  array('title', 'revisions', 'editor','comments')
+                'supports'              =>  array('title', 'revisions', 'editor','comments', 'page-attributes')
             )
         );
 
