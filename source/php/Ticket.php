@@ -23,6 +23,15 @@ class Ticket extends \TODO\Entity\PostType
         self::$priorityTaxonomySlug = $this->taxonomyPriority();
         self::$statusTaxonomySlug = $this->taxonomyStatus();
         self::$sprintTaxonomySlug = $this->taxonomySprint();
+
+        add_filter('Municipio/CustomPostType/ExcludedPostTypes', array($this, 'excludePostType'));
+    }
+
+    // Exclude this post type from page template filter.
+    public function excludePostType($postTypes)
+    {
+        $postTypes[] = $this->postType();
+        return $postTypes;
     }
 
     /**
