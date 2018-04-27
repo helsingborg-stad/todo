@@ -58,7 +58,7 @@ class Ticket extends \TODO\Entity\PostType
                     'with_front' =>   false
                 ),
                 'hierarchical'          =>  true,
-                'exclude_from_search'   =>  false,
+                'exclude_from_search'   =>  true,
                 'taxonomies'            =>  array(),
                 'supports'              =>  array('title', 'revisions', 'editor','comments', 'page-attributes')
             )
