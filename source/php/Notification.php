@@ -1,4 +1,4 @@
-<?php
+ f<?php
 
 namespace TODO;
 
@@ -163,7 +163,7 @@ class Notification
 
             //Get data and push to html table
 
-            $return .= '<table border="0" cellpadding="0" cellspacing="0"><tbody>';
+            $return .= '<table border="1" cellpadding="0" cellspacing="0"><tbody>';
 
             // Description
             if (isset($postData->post_content) && !empty($postData->post_content)) {
